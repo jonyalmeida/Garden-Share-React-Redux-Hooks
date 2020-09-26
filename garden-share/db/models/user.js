@@ -18,21 +18,21 @@ module.exports = (sequelize, DataTypes) => {
     },
     firstName: {
       allowNull: false,
-      type: DataTypes.String(20),
+      type: DataTypes.STRING(20),
       validates: {
         len: [3, 20],
       }
     },
     lastName: {
       allowNull: false,
-      type: DataTypes.String(120),
+      type: DataTypes.STRING(120),
       validates: {
         len: [2, 120],
       }
     },
     address: {
       allowNull: false,
-      type: DataTypes.String(255),
+      type: DataTypes.STRING(255),
       unique: true,
     },
     userGeocode: {
