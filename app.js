@@ -41,6 +41,7 @@ if (process.env.NODE_ENV === "production") {
   });
   app.use(express.static("client/build"));
   app.get(/\/(?!api)*/, (req, res) => {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
