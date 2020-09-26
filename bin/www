@@ -14,7 +14,7 @@ const config = require('../config');
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '5000');
+const port = normalizePort(process.env.PORT || '8080');
 app.set('port', port);
 
 /**
@@ -27,9 +27,19 @@ const server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+db.sequelize
+  .authenticate()
+  .then(() => {
+    debug('Connected to database successfully');
+    server.listen(port);
+  })
+  .catch(() => {
+    console.error('Error connecting to database');
+    process.exit(1);
+  });
 
 /**
  * Normalize a port into a number, string, or false.
