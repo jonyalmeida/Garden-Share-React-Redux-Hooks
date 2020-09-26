@@ -6,15 +6,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validates: {
         isEmail: true,
-        len: [3, 255],
+        len: [10, 255],
       }
-    },
-    username: {
-      allowNull: false,
-      type: DataTypes.STRING,
-      validates: {
-        len: [1, 255],
-      },
     },
     hashedPassword: {
       allowNull: false,
@@ -23,12 +16,36 @@ module.exports = (sequelize, DataTypes) => {
         len: [60, 60],
       },
     },
+    firstName: {
+      allowNull: false,
+      type: DataTypes.String(20),
+      validates: {
+        len: [3, 20],
+      }
+    },
+    lastName: {
+      allowNull: false,
+      type: DataTypes.String(120),
+      validates: {
+        len: [2, 120],
+      }
+    },
+    address: {
+      allowNull: false,
+      type: DataTypes.String(255),
+      unique: true,
+    },
+    userGeocode: {
+      allowNull: false,
+      type: DataTypes.ARRAY(DataTypes.DECIMAL),
+    },
     tokenId: {
       type: DataTypes.STRING
-    }
-  }, {});
+    },
+  },
+    {});
 
-  User.associate = function(models) {
+  User.associate = function (models) {
   };
 
   return User;

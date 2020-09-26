@@ -13,14 +13,26 @@ module.exports = {
         type: Sequelize.STRING(255),
         unique: true,
       },
-      username: {
+      hashedPassword: {
+        allowNull: false,
+        type: Sequelize.STRING(60).BINARY,
+      },
+      firstName: {
+        allowNull: false,
+        type: Sequelize.STRING(20),
+      },
+      lastName: {
+        allowNull: false,
+        type: Sequelize.STRING(120),
+      },
+      address: {
         allowNull: false,
         type: Sequelize.STRING(255),
         unique: true,
       },
-      hashedPassword: {
+      userGeocode: {
         allowNull: false,
-        type: Sequelize.STRING(60).BINARY,
+        type: Sequelize.ARRAY(Sequelize.DECIMAL),
       },
       tokenId: {
         type: Sequelize.STRING(36),
