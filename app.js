@@ -7,6 +7,8 @@ const path = require('path');
 const logger = require('morgan');
 const csurf = require('csurf');
 const routes = require('./routes');
+const { ValidationError } = require('sequelize');
+const { AuthenticationError } = require('./routes/util/auth');
 
 const app = express();
 
@@ -19,8 +21,11 @@ app.use(cookieParser())
 
 
 // Security Middleware
-app.use(cors({ origin: true }));
-app.use(helmet({ hsts: false }));
+if (process.env.NODE_ENV === 'production') {
+  app.use(cors({ origin: false }));
+  app.use(helmet({ hsts: true }));
+}
+
 app.use(csurf({
   cookie: {
     secure: process.env.NODE_ENV === 'production',
@@ -51,15 +56,33 @@ app.use(function (_req, _res, next) {
   next(createError(404));
 });
 
+app.use((err, _req, _res, next) => {
+  //check if error is a Sequelize error:
+  if (err instanceof ValidationError) {
+    err.errors = err.errors.map((e) => e.message);
+    err.title = 'Sequelize Error';
+  }
+  err.status = 422;
+  next(err);
+});
+
 app.use(function (err, _req, res, _next) {
   res.status(err.status || 500);
-  if (err.status === 401) {
-    res.set('WWW-Authenticate', 'Bearer');
+  if (err instanceof AuthenticationError) {
+    res.clearCookie('token');
   }
-  res.json({
-    message: err.message,
-    error: JSON.parse(JSON.stringify(err)),
-  });
+  if (process.env.NODE_ENV === 'production') {
+    res.json({
+      message: err.message,
+      error: { errors: err.errors },
+    });
+  } else {
+    res.json({
+      message: err.message,
+      stack: err.stack,
+      error: JSON.parse(JSON.stringify(err)),
+    });
+  }
 });
 
 module.exports = app;
