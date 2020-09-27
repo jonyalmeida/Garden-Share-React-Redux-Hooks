@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(csurf({
   cookie: {
     secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV === 'production',
+    sameSite: true,//process.env.NODE_ENV === 'production',
     httpOnly: true
   }
 }));
