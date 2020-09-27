@@ -37,6 +37,7 @@ router.post(
             maxAge: expiresIn * 1000,
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
+            sameSite: true,
         });
     })
 );

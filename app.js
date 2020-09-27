@@ -41,12 +41,12 @@ app.use(routes);
 // This should come after routes, but before 404 and error handling.
 if (process.env.NODE_ENV === "production") {
   app.get('/', (req, res) => {
-    res.cookie('XSRF-TOKEN', req.csrfToken());
+    res.cookie('XSRF-TOKEN', req.csrfToken(), { sameSite: true });
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
   app.use(express.static("client/build"));
   app.get(/\/(?!api)*/, (req, res) => {
-    res.cookie('XSRF-TOKEN', req.csrfToken());
+    res.cookie('XSRF-TOKEN', req.csrfToken(), { sameSite: true });
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
