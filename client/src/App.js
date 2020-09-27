@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
 import UserList from './components/UsersList';
@@ -6,25 +6,41 @@ import UserList from './components/UsersList';
 
 function App() {
 
-  return (
-    <BrowserRouter>
-        <nav>
-            <ul>
-                <li><NavLink to="/" activeClass="active">Home</NavLink></li>
-                <li><NavLink to="/users" activeClass="active">Users</NavLink></li>
-            </ul>
-        </nav>
-        <Switch>
-            <Route path="/users">
-                <UserList />
-            </Route>
+    const [loading, setLoading] = setState(true);
 
-            <Route path="/">
-                <h1>My Home Page</h1>
-            </Route>
-        </Switch>
-    </BrowserRouter>
-  );
+    useEffect(() => {
+        const loadUser = async () => {
+            //enter the back end route to get the current user
+            const res = await fetch('/api/session');
+            if (res.ok) {
+                res.data = await res.json(); //current user info
+            }
+            setLoading(false);
+        }
+        loadUser();
+    }, []);
+
+    if (loading) return null;
+
+    return (
+        <BrowserRouter>
+            <nav>
+                <ul>
+                    <li><NavLink to="/" activeClass="active">Home</NavLink></li>
+                    <li><NavLink to="/users" activeClass="active">Users</NavLink></li>
+                </ul>
+            </nav>
+            <Switch>
+                <Route path="/users">
+                    <UserList />
+                </Route>
+
+                <Route path="/">
+                    <h1>My Home Page</h1>
+                </Route>
+            </Switch>
+        </BrowserRouter>
+    );
 }
 
 export default App;
