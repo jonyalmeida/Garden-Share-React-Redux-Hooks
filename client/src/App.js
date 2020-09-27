@@ -6,7 +6,7 @@ import UserList from './components/UsersList';
 
 function App() {
 
-    const [loading, setLoading] = setState(true);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const loadUser = async () => {
