@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
+import { Provider } from 'react-redux';
 
 import UserList from './components/UsersList';
 
