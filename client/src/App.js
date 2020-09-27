@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, NavLink } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
-import { Provider } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import configureStore from './store/configureStore';
 import Pages from './pages/Pages';
-
-const store = configureStore();
-if (process.env.NODE_ENV !== 'production') {
-    window.store = store;
-}
+import { setUser } from './store/auth';
 
 function App() {
 
     const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const loadUser = async () => {
@@ -21,12 +17,13 @@ function App() {
             const res = await fetch('/api/session');
             if (res.ok) {
                 res.data = await res.json(); //current user info
-                console.log(res.data)
+                console.log(res.data);
+                dispatch(setUser(res.data.user));
             }
             setLoading(false);
         }
         loadUser();
-    }, []);
+    }, [dispatch]);
 
     if (loading) return null;
 
@@ -34,16 +31,14 @@ function App() {
         <>
             <CssBaseline />
             <BrowserRouter>
-                <Provider store={store}>
-                    <nav>
-                        <ul>
-                            <li><NavLink to='/' activeClassName='active'>Home</NavLink></li>
-                            <li><NavLink to='/login' activeClassName='active'>Login</NavLink></li>
-                            <li><NavLink to='/users' activeClassName='active'>Users</NavLink></li>
-                        </ul>
-                    </nav>
-                    <Pages />
-                </Provider>
+                <nav>
+                    <ul>
+                        <li><NavLink to='/' activeClassName='active'>Home</NavLink></li>
+                        <li><NavLink to='/login' activeClassName='active'>Login</NavLink></li>
+                        <li><NavLink to='/users' activeClassName='active'>Users</NavLink></li>
+                    </ul>
+                </nav>
+                <Pages />
             </BrowserRouter>
         </>
     );
