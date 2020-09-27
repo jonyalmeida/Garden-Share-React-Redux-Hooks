@@ -27,6 +27,8 @@ export const login = (email, password) => {
     };
 };
 
+window.login = login;
+
 export default function authReducer(state = {}, action) {
     switch (action.type) {
         case SET_USER:
