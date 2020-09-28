@@ -8,7 +8,16 @@ const { generateToken } = require('../util/auth');
 const { jwtConfig: { expiresIn } } = require('../../config');
 
 const validateSignup = [
-    check('email', 'must be a valida email address')
+    check('firstName', 'must be a your first name')
+        .exists()
+        .isLength({ min: 2, max: 20 }),
+    check('lastName', 'must be a your last name')
+        .exists()
+        .isLength({ min: 2, max: 120 }),
+    check('address', 'must be a valid US address')
+        .exists()
+        .isLength({ min: 15, max: 255 }),
+    check('email', 'must be a valid email address')
         .exists()
         .isEmail(),
     check('password', 'must be 6 or more characters')
