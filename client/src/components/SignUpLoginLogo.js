@@ -9,7 +9,7 @@ export default function SignUpLoginLogo() {
                 width: `100vw`,
                 backgroundRepeat: `no-repeat`,
                 backgroundPosition: `center`,
-                backgroundSize: 'cover',
+                backgroundSize: 'contain',
                 display: `flex`,
                 justifyContent: `center`,
                 alignItems: `center`
