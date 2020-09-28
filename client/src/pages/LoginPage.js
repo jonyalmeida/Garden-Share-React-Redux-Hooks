@@ -8,8 +8,8 @@ import AuthSubmitButton from '../components/AuthSubmitButton';
 import SignUpLoginLogo from '../components/SignUpLoginLogo';
 
 function LoginPage() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('demo@example.com');
+    const [password, setPassword] = useState('password');
     const currentUserId = useSelector(state => state.auth.id);
     console.log(currentUserId);
     const dispatch = useDispatch();
@@ -28,8 +28,12 @@ function LoginPage() {
     return (
         <>
             <SignUpLoginLogo />
-            <Container fixed maxWidth='sm'>
-                <form onSubmit={handleSubmit}>
+            <Container fixed maxWidth='sm' style={{ marginTop: '-10%' }}>
+                <h1 style={{ textAlign: 'center' }}>Log in / Sign up</h1>
+                <form
+                    onSubmit={handleSubmit}
+                    style={{ display: 'flex', flexDirection: 'column' }}
+                >
                     <TextField
                         variant='filled'
                         label='E-mail'

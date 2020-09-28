@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, NavLink } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { CssBaseline } from '@material-ui/core';
 
@@ -31,15 +31,7 @@ function App() {
         <>
             <CssBaseline />
             <BrowserRouter>
-                <nav>
-                    <ul>
-                        <li><NavLink to='/' activeClassName='active'>Home</NavLink></li>
-                        <li><NavLink to='/login' activeClassName='active'>Login</NavLink></li>
-                        <li><NavLink to='/users' activeClassName='active'>Users</NavLink></li>
-                    </ul>
-                </nav>
                 <Pages />
-
             </BrowserRouter>
         </>
     );

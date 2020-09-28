@@ -9,17 +9,18 @@ export default function SignUpLoginLogo() {
                 width: `100vw`,
                 backgroundRepeat: `no-repeat`,
                 backgroundPosition: `center`,
+                backgroundSize: 'cover',
                 display: `flex`,
                 justifyContent: `center`,
                 alignItems: `center`
             }}>
             <h1 style={{
                 position: `absolute`,
-                top: '37%',
+                top: '25%',
                 fontFamily: `'Dancing Script', cursive`,
-                fontSize: '4.5em',
+                fontSize: '5.5em',
                 color: 'green',
-                transform: `rotate(-15deg)`,
+                transform: `rotate(-10deg)`,
                 textShadow: `1px 1px 2px yellow, 0 0 1em blue, 0 0 0.2em lightgreen`
             }}>
                 Welcome to<br />Garden Share
