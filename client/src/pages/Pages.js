@@ -1,9 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import LoginPage from './LoginPage';
 import UserList from '../components/UsersList';
 import NavBar from '../components/NavBar';
+
+import EnterPage from '../pages/EnterPage';
 
 export default function Pages() {
     return (
@@ -13,7 +14,7 @@ export default function Pages() {
                 <NavBar />
                 <h1>My Home Page</h1>
             </Route>
-            <Route path='/login' component={LoginPage} />
+            <Route path='/enter' component={EnterPage} />
         </>
     );
 };
