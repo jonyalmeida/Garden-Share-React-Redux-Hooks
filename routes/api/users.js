@@ -16,15 +16,13 @@ const validateSignup = [
         .isLength({ min: 2, max: 120 }),
     check('address', 'must be a valid US address')
         .exists()
-        .isLength({ min: 15, max: 255 }),
+        .isLength({ min: 5, max: 255 }),
     check('email', 'must be a valid email address')
         .exists()
         .isEmail(),
     check('password', 'must be 6 or more characters')
         .exists()
         .isLength({ min: 6, max: 70 }),
-    check('confirmPassword', 'must have the same value as the password field')
-        .custom((value, { req }) => value === req.body.password)
 ];
 
 const router = express.Router();
@@ -47,6 +45,10 @@ router.post(
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: true,
+        });
+
+        return res.json({
+            user,
         });
     })
 );

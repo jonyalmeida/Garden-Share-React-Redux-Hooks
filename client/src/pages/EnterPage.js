@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, NavLink, Route, BrowserRouter } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 
 import LoginForm from '../components/LoginForm';

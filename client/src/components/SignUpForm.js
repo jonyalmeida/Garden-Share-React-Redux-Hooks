@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { TextField } from '@material-ui/core';
 import Cookies from 'js-cookie';
 
@@ -14,15 +14,12 @@ export default function SignUpForm() {
     const [userGeocode, setUserGeocode] = useState('');
     const [email, setEmail] = useState('demo@example.com');
     const [password, setPassword] = useState('password');
-    const currentUserId = useSelector(state => state.auth.id);
 
     const [streetAddress, setStreetAddress] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zipCode, setZipCode] = useState('');
-    const [googleGeocode, setGoogleGeocode] = useState('');
 
-    console.log(currentUserId);
     const dispatch = useDispatch();
 
     const registerUser = async () => {
@@ -32,12 +29,13 @@ export default function SignUpForm() {
                 'Content-Type': 'application/json',
                 'XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
             },
-            body: JSON.stringify({ email, password, firstName, lastName, address, userGeocode }),
+            body: JSON.stringify({ email, password, firstName, lastName, address, userGeocode: [13, 123] }),
         });
         res.data = await res.json(); // { user: { ... }}
         if (res.ok) {
             dispatch(setUser(res.data));
             dispatch(login(email, password));
+
         }
     }
 
