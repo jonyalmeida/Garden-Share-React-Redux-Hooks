@@ -51,4 +51,10 @@ router.put(
     })
 );
 
+router.delete('/', asyncHandler(async (req, res) => {
+    console.log('router delete end point')
+    res.clearCookie('token');
+    res.json({ message: 'success' });
+}));
+
 module.exports = router;
