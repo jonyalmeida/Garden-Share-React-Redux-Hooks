@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
-const { User, Product, Message } = require('../../db/models');
+const { Message } = require('../../db/models');
 const { handleValidationErrors } = require('../util/validation');
 
 const validateMessage = [

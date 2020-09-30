@@ -28,7 +28,6 @@ module.exports = {
       address: {
         allowNull: false,
         type: Sequelize.STRING(255),
-        unique: true,
       },
       userGeocode: {
         allowNull: false,
