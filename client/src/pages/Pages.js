@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux';
 import UserList from '../components/UsersList';
 import NavBar from '../components/NavBar';
 import EnterPage from '../pages/EnterPage';
-import LogoutUser from '../components/Logout';
+import LogoutUser from '../components/sessions/Logout';
+import HomePage from './HomePage';
 
 export default function Pages() {
 
@@ -18,7 +19,7 @@ export default function Pages() {
             <Route exact path='/' render={() => !currentUserId ? <Redirect to='/enter' /> :
                 <>
                     <NavBar />
-                    <h1>My Home Page</h1>
+                    <HomePage />
                 </>
             }
             />

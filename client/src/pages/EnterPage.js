@@ -1,18 +1,21 @@
 import React from 'react';
-import { NavLink, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { NavLink, Route, Redirect } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 
-import LoginForm from '../components/LoginForm';
-import SignUpForm from '../components/SignUpForm';
-import SignUpLoginLogo from '../components/SignUpLoginLogo';
+import LoginForm from '../components/sessions/LoginForm';
+import SignUpForm from '../components/sessions/SignUpForm';
+import SignUpLoginLogo from '../components/sessions/SignUpLoginLogo';
 
 export default function EnterPage() {
 
-    // if (currentUserId) {
-    //     return (
-    //         <Redirect to='/' />
-    //     )
-    // }
+    const currentUserId = useSelector(state => state.auth.id);
+
+    if (currentUserId) {
+        return (
+            <Redirect to='/' />
+        )
+    }
 
     return (
         <>

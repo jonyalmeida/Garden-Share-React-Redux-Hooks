@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import AuthSubmitButton from '../components/AuthSubmitButton';
+import { useHistory } from 'react-router-dom';
+import AuthSubmitButton from './AuthSubmitButton';
 import { TextField } from '@material-ui/core';
 
-import { login } from '../store/auth';
+import { login } from '../../store/auth';
 
 export default function LoginForm() {
 
@@ -13,9 +14,13 @@ export default function LoginForm() {
     console.log(currentUserId);
     const dispatch = useDispatch();
 
+    const history = useHistory();
+    console.log(history);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(login(email, password));
+        history.replace('/');
     }
 
     return (

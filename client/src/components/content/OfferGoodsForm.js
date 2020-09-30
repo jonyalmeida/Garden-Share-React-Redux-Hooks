@@ -1,48 +1,7 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { TextField } from '@material-ui/core';
-import Cookies from 'js-cookie';
+import React from 'react';
 
-import { login } from '../store/auth';
-import AuthSubmitButton from '../components/AuthSubmitButton';
-import { setUser } from '../store/auth';
+export default function OfferGoodsForm() {
 
-export default function SignUpForm() {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [address, setAddress] = useState('');
-    const [userGeocode, setUserGeocode] = useState('');
-    const [email, setEmail] = useState('demo@example.com');
-    const [password, setPassword] = useState('password');
-
-    const [streetAddress, setStreetAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
-    const [zipCode, setZipCode] = useState('');
-
-    const dispatch = useDispatch();
-
-    const registerUser = async () => {
-        const res = await fetch('/api/users', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
-            },
-            body: JSON.stringify({ email, password, firstName, lastName, address, userGeocode: [13, 123] }),
-        });
-        res.data = await res.json(); // { user: { ... }}
-        if (res.ok) {
-            dispatch(setUser(res.data));
-            dispatch(login(email, password));
-
-        }
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        registerUser();
-    }
 
     return (
         <div>
@@ -96,13 +55,7 @@ export default function SignUpForm() {
                     type='text'
                     value={address}
                     onChange={(e) => setAddress(e.target.value)} />
-                {/*/ this is the input field used specifically for autocomplete
-            // note that it doesn't respond to changes in state,
-            // nor does it change state
-            // it's just talking to the Google Maps API
-            // I've given it an id so we can reference it when we
-            // instantiate the Google Autocomplete box
-            */}<TextField
+                <TextField
                     variant='filled'
                     label='Street Address'
                     type='text'
@@ -140,5 +93,5 @@ export default function SignUpForm() {
                 <AuthSubmitButton>Sign Up</AuthSubmitButton>
             </form>
         </div>
-    );
+    )
 }
