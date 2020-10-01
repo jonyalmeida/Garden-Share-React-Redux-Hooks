@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 
 import auth from './auth';
 import msgs from './messages';
+import goods from './goodsOffered';
 
 const rootReducer = combineReducers({
     auth,
     msgs,
+    goods,
 });
 
 let storeEnhancer;

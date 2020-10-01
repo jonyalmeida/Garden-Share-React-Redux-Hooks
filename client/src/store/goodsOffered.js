@@ -1,4 +1,4 @@
-const SET_MESSAGES = 'messages/SET_GOODS_OFFERED';
+const SET_GOODS_OFFERED = 'messages/SET_GOODS_OFFERED';
 
 export const setGoodsOffered = (goods) => {
     return {
@@ -7,28 +7,21 @@ export const setGoodsOffered = (goods) => {
     };
 };
 
-export function fetchMessages() {
+export function fetchAllGoods() {
     return async dispatch => {
-        const res = await fetch(`/api/goods/offered`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
-            },
-            body: JSON.stringify({ vegetables: true }),
-        });
-        res.data = await res.json();
+        const res = await fetch(`/api/goods/allgoods`)
+        const { goods } = await res.json();
         if (res.ok) {
-            dispatch(setGoodsOffered(res.data));
+            dispatch(setGoodsOffered(goods));
         }
         return res;
     };
 };
 
-export default function messagesReducer(state = [], action) {
+export default function GoodsReducer(state = [], action) {
     switch (action.type) {
-        case SET_MESSAGES:
-            return action.messages;
+        case SET_GOODS_OFFERED:
+            return action.goods;
         default:
             return state;
     }
