@@ -6,19 +6,19 @@ const { Op } = require('sequelize');
 const { Product } = require('../../db/models');
 const { handleValidationErrors } = require('../util/validation');
 
-const router = new express.Route();
+const router = new express.Router();
 
 const validateProducts = [
     //TODO 
 ]
 
-async function queryGoods(productName = '.*', vegetable = false, animal = false, fruit = false) {
+async function queryGoods(productName = '.*', vegetables = false, animal = false, fruit = false) {
     return await Product.findAll({
         where: {
             productName: {
-                [Op.like]: `${productName}`,
+                [Op.regexp]: productName,
             },
-            vegetable,
+            vegetables,
             animal,
             fruit,
         },
@@ -26,8 +26,8 @@ async function queryGoods(productName = '.*', vegetable = false, animal = false,
 }
 
 //list all products matching sellerId 
-router.get('/', asyncHandler(async function (req, res) {
-    const { sellerId } = req.body;
+router.get('/:id', asyncHandler(async function (req, res) {
+    const sellerId = req.params.id;
     const goods = await Product.findAll({
         where: {
             sellerId
@@ -38,17 +38,17 @@ router.get('/', asyncHandler(async function (req, res) {
 }));
 
 //list all products matching specific queries 
-router.get('/offered', asyncHandler(async function (req, res) {
+router.put('/offered', asyncHandler(async function (req, res) {
     const {
         productName,
-        vegetable,
+        vegetables,
         fruit,
         animal,
     } = req.body;
 
-    const goods = queryGoods(productName, vegetable, animal, fruit);
+    const goodsQuery = await queryGoods(productName, vegetables, animal, fruit);
 
-    res.json({ goods });
+    res.json({ goodsQuery });
 }));
 
 //create new goods listing
@@ -109,3 +109,5 @@ router.delete('/', asyncHandler(async function (req, res) {
 
     res.send('product removed');
 }));
+
+module.exports = router;

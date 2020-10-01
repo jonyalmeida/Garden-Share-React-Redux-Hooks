@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
-const { User } = require('../../db/models');
+const { User, Message } = require('../../db/models');
 const { handleValidationErrors } = require('../util/validation');
 const { generateToken } = require('../util/auth');
 const { jwtConfig: { expiresIn } } = require('../../config');
@@ -52,5 +52,51 @@ router.post(
         });
     })
 );
+
+const validateMessage = [
+    check('message', 'must include a message')
+        .exists(),
+    check('senderId', 'must be a valid user id integer')
+        .exists(),
+    check('receiverId', 'must be a valid user id integer')
+        .exists()
+];
+
+router.get('/:id/messages', asyncHandler(async function (req, res, next) {
+
+    const receiverId = parseInt(req.params.id);
+
+    const messages = await Message.findAll({
+        where: {
+            receiverId,
+        }
+    });
+
+    res.json({ messages });
+}));
+
+router.post('/:id/messages', validateMessage, handleValidationErrors, asyncHandler(async function (req, res) {
+
+    const senderId = parseInt(req.params.id);
+
+    const {
+        message,
+        receiverId,
+        goodsId,
+    } = req.body;
+
+    const msg = await Message.create({
+        message,
+        receiverId,
+        senderId,
+        goodsId
+    });
+
+    res.json(await Message.findOne({
+        where: {
+            id: msg.id
+        }
+    }));
+}));
 
 module.exports = router;
