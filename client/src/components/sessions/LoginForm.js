@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import AuthSubmitButton from './AuthSubmitButton';
 import { TextField } from '@material-ui/core';
@@ -10,8 +10,7 @@ export default function LoginForm() {
 
     const [email, setEmail] = useState('demo@example.com');
     const [password, setPassword] = useState('password');
-    const currentUserId = useSelector(state => state.auth.id);
-    console.log(currentUserId);
+
     const dispatch = useDispatch();
 
     const history = useHistory();

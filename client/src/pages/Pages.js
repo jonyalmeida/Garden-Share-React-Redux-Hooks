@@ -3,10 +3,11 @@ import { Redirect, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import UserList from '../components/UsersList';
-import NavBar from '../components/NavBar';
+// import NavBar from '../components/NavBar';
 import EnterPage from '../pages/EnterPage';
 import LogoutUser from '../components/sessions/Logout';
 import HomePage from './HomePage';
+import Dashboard from '../components/dashboard-ui/Dashboard';
 
 export default function Pages() {
 
@@ -18,12 +19,12 @@ export default function Pages() {
             <Route path='/logout' component={LogoutUser} />
             <Route exact path='/' render={() => !currentUserId ? <Redirect to='/enter' /> :
                 <>
-                    <NavBar />
                     <HomePage />
                 </>
             }
             />
             <Route path='/enter' component={EnterPage} />
+            <Route path='/dashboard' component={Dashboard} />
         </>
     );
 };

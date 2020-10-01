@@ -11,7 +11,6 @@ export default function SignUpForm() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [address, setAddress] = useState('');
-    const [userGeocode, setUserGeocode] = useState('');
     const [email, setEmail] = useState('demo@example.com');
     const [password, setPassword] = useState('password');
 

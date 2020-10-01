@@ -6,15 +6,15 @@ import {
     InfoWindow,
 } from '@react-google-maps/api';
 import { formatRelative } from 'date-fns';
-import usePlacesAutoComplete, {
-    getGeocode,
-    getLatLng,
-} from 'use-places-autocomplete';
+import usePlacesAutoComplete /*, {
+    // getGeocode,
+    // getLatLng,
+}*/ from 'use-places-autocomplete';
 import {
     Combobox,
     ComboboxInput,
     ComboboxPopover,
-    ComboboxList,
+    /* ComboboxList,*/
     ComboboxOption,
 } from '@reach/combobox';
 import '@reach/combobox/styles.css'
@@ -28,8 +28,8 @@ const mapContainerStyle = {
 }
 
 const center = {
-    lat: 43.653225,
-    lng: -79.383186,
+    lat: 33.5064051,
+    lng: -117.683808,
 }
 
 const options = {
@@ -41,10 +41,10 @@ const options = {
 export default function MapListings() {
 
     const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: '',
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
         libraries,
     });
-
+    console.log(process.env);
     const [markers, setMarkers] = useState([]);
     const [selected, setSelected] = useState(null);
 
@@ -116,7 +116,7 @@ export default function MapListings() {
 }
 
 function Search() {
-    const { ready, value, suggestions: { status, data }, setValue, clearSuggestions } = usePlacesAutoComplete({
+    const { ready, value, suggestions: { status, data }, setValue, /*clearSuggestions*/ } = usePlacesAutoComplete({
         requestOptions: {
             location: {
                 lat: () => 43.653225,

@@ -1,18 +1,18 @@
 import React from 'react';
 
-import Messages from '../components/features/Messages';
-import ListOfGoods from '../components/features/ListOfGoods';
-import MapListings from '../components/features/MapListings';
+// import ListOfGoods from '../components/features/ListOfGoods';
+// import MapListings from '../components/features/MapListings';
+import Dashboard from '../components/dashboard-ui/Dashboard';
 
 export default function HomePage() {
 
 
     return (
         <>
-            <h1>Hello homepage!</h1>
+            <Dashboard />
+            {/* <UserInfo />
             <Messages />
-            <ListOfGoods />
-            <MapListings />
+            <ListOfGoods /> */}
         </>
     )
 }

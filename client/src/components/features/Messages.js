@@ -1,26 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { fetchMessages } from '../../store/messages';
 
 export default function Messages() {
     const currentUserId = useSelector(state => state.auth.id);
+    const messages = useSelector(state => state.msgs);
 
-    const [messages, setMessages] = useState([]);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        async function fetchData() {
+        dispatch(fetchMessages(currentUserId));
+        console.log('1')
+    }, [dispatch, currentUserId]);
 
-            const response = await fetch(`/api/users/${currentUserId}/messages/`);
-            const responseData = await response.json();
-            console.log(responseData);
-        }
-        fetchData();
-    }, []);
+    console.log(messages)
 
-    // const userComponents = .map((user) => <User key={user.id} user={user} />)
     return (
         <>
-            <h1>Messages </h1>
+            <h1>Messages</h1>
+            <ul>
+                {messages.map(msg => <li key={msg.id}>
+                    <h3>Message from {msg.User.firstName} {msg.User.lastName}</h3>
+                    {msg.message}</li>)}
+            </ul>
         </>
     );
 }

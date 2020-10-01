@@ -50,22 +50,6 @@ export function logout() {
     };
 }
 
-// export function loadUser() {
-//     const authToken = Cookies.get("token");
-//     if (authToken) {
-//         try {
-//             const payload = authToken.split(".")[1];
-//             const decodedPayload = atob(payload);
-//             const payloadObj = JSON.parse(decodedPayload);
-//             const { data } = payloadObj;
-//             return data;
-//         } catch (e) {
-//             Cookies.remove("token");
-//         }
-//     }
-//     return {};
-// }
-
 export default function authReducer(state = {}, action) {
     switch (action.type) {
         case SET_USER:

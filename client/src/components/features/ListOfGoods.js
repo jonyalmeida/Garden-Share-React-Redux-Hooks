@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Cookies from 'js-cookie';
 
 export default function ListOfGoods() {
     const currentUserId = useSelector(state => state.auth.id);
 
-    const [goods, setGoods] = useState([]);
+    // const [goods, setGoods] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
@@ -15,7 +15,7 @@ export default function ListOfGoods() {
             console.log(responseData);
         }
         fetchData();
-    }, []);
+    }, [currentUserId]);
 
     async function fetchGoodsByQuery() {
 
