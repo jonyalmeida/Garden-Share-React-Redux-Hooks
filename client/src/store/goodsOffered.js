@@ -27,11 +27,11 @@ export function fetchAllGoods() {
 };
 
 export default function GoodsReducer(state = [], action) {
+    const newState = state.slice();
     switch (action.type) {
         case SET_GOODS_OFFERED:
             return action.goods;
         case ADD_GOODS:
-            let newState = state.slice();
             newState.push(action.goods);
             return newState;
         default:

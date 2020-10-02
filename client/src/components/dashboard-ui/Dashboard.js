@@ -355,48 +355,44 @@ export default function Dashboard() {
                 </div>
                 <Divider />
                 <List>{mainListItems}</List>
-                {/* <Divider /> */}
-                {/* <List>{secondaryListItems}</List> */}
             </Drawer>
             <Switch>
-                <Route path='/messages' component={Messages} />
+                <main className={classes.content}>
+                    <div className={classes.appBarSpacer} />
+                    <Container maxWidth="lg" className={classes.container}>
+                        <Grid container spacing={3}>
+                            <Grid item xs={12}>
+                                <Paper className={classes.paper}>
+                                    <Route path='/messages' component={Messages} />
+                                </Paper>
+                            </Grid>
+                        </Grid>
+                        <Grid container spacing={3}>
+                            <Grid item xs={12}>
+                                <Paper className={classes.paper}>
+                                    <ListOfGoods />
+                                </Paper>
+                            </Grid>
+                        </Grid>
+                        <Grid container spacing={3}>
+                            <Grid item xs={12}>
+                                <Paper className={classes.paper}>
+                                    <OfferGoodsForm />
+                                </Paper>
+                            </Grid>
+                        </Grid>
+                        <Grid container spacing={3}>
+                            <Grid item xs={12}>
+                                <Paper className={classes.paper}>
+                                    <SearchGoodsForm />
+                                </Paper>
+                            </Grid>
+                        </Grid>
+                        <Box pt={4}>
+                        </Box>
+                    </Container>
+                </main>
             </Switch>
-            {/* <main className={classes.content}>
-                <div className={classes.appBarSpacer} />
-                <Container maxWidth="lg" className={classes.container}>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12}>
-                            <Paper className={classes.paper}>
-                                <Messages />
-                            </Paper>
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12}>
-                            <Paper className={classes.paper}>
-                                <ListOfGoods />
-                            </Paper>
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12}>
-                            <Paper className={classes.paper}>
-                                <OfferGoodsForm />
-                            </Paper>
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12}>
-                            <Paper className={classes.paper}>
-                                <SearchGoodsForm />
-                            </Paper>
-                        </Grid>
-                    </Grid>
-                    <Box pt={4}>
-                    </Box>
-                </Container>
-            </main>
-            </Switch> */}
         </div >
     );
 }

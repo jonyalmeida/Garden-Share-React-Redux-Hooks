@@ -82,28 +82,42 @@ router.get('/:id/messages', asyncHandler(async function (req, res, next) {
     res.json({ messages });
 }));
 
-router.post('/:id/messages', validateMessage, handleValidationErrors, asyncHandler(async function (req, res) {
+router.post('/:id/messages', asyncHandler(async function (req, res) {
 
     const senderId = parseInt(req.params.id);
 
     const {
-        message,
+        msg,
         receiverId,
         goodsId,
     } = req.body;
 
-    const msg = await Message.create({
-        message,
+    console.log(msg, receiverId, goodsId, senderId)
+
+    const text = await Message.create({
+        message: msg,
         receiverId,
         senderId,
         goodsId
     });
 
-    res.json(await Message.findOne({
+    const sentMessage = await Message.findOne({
         where: {
-            id: msg.id
-        }
-    }));
+            message: msg
+        },
+        include: [{ model: User }],
+    });
+
+    res.json({ sentMessage });
+}));
+
+router.delete('/msgs', asyncHandler(async function (req, res) {
+    console.log('delete message back end');
+    const { msgId } = req.body;
+    console.log(msgId);
+    const message = await Message.findByPk(msgId);
+    await message.destroy();
+    res.send('success');
 }));
 
 // router.post('/:id/messages/reply', validateMessage, handleValidationErrors, asyncHandler(async function (req, res) {
