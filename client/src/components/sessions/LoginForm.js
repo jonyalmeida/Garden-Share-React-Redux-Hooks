@@ -7,19 +7,17 @@ import { TextField } from '@material-ui/core';
 import { login } from '../../store/auth';
 
 export default function LoginForm() {
+    const history = useHistory();
 
     const [email, setEmail] = useState('demo@example.com');
     const [password, setPassword] = useState('password');
 
     const dispatch = useDispatch();
 
-    const history = useHistory();
-    console.log(history);
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(login(email, password));
-        history.replace('/');
+        await dispatch(login(email, password));
+        history.push("/");
     }
 
     return (

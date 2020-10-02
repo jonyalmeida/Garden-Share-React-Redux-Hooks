@@ -34,7 +34,6 @@ export default function SignUpForm() {
         if (res.ok) {
             dispatch(setUser(res.data));
             dispatch(login(email, password));
-
         }
     }
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import UserList from '../components/UsersList';
 // import NavBar from '../components/NavBar';
 import EnterPage from '../pages/EnterPage';
 import LogoutUser from '../components/sessions/Logout';
@@ -15,16 +14,14 @@ export default function Pages() {
 
     return (
         <>
-            <Route path='/users' component={UserList} />
             <Route path='/logout' component={LogoutUser} />
-            <Route exact path='/' render={() => !currentUserId ? <Redirect to='/enter' /> :
+            <Route path='/' render={() => !currentUserId ? <Redirect to='/enter' /> :
                 <>
                     <HomePage />
                 </>
             }
             />
             <Route path='/enter' component={EnterPage} />
-            <Route path='/dashboard' component={Dashboard} />
         </>
     );
 };

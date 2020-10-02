@@ -28,12 +28,14 @@ export default function AuthSubmitButton(props) {
     const classes = useStyles();
 
     return (
-        <Button
-            type='submit'
-            classes={classes}
-            size='large'
-            variant='contained'
-            {...props}
-        />
+        <>
+            <Button
+                type='submit'
+                classes={classes}
+                size='large'
+                variant='contained'
+                {...props}
+            />
+        </>
     )
 }

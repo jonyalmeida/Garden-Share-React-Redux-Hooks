@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 
@@ -12,6 +13,8 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import UserPic from '../dashboard/UserPic';
 import Messages from '../features/Messages';
 import ListOfGoods from '../features/ListOfGoods';
+import OfferGoodsForm from '../features/OfferGoodsForm';
+import SearchGoodsForm from '../features/SearchGoodsForm';
 
 import { fade, makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -27,23 +30,11 @@ import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems } from './listItems';
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-      </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+// import { Switch } from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -367,7 +358,10 @@ export default function Dashboard() {
                 {/* <Divider /> */}
                 {/* <List>{secondaryListItems}</List> */}
             </Drawer>
-            <main className={classes.content}>
+            <Switch>
+                <Route path='/messages' component={Messages} />
+            </Switch>
+            {/* <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
                     <Grid container spacing={3}>
@@ -377,28 +371,32 @@ export default function Dashboard() {
                             </Paper>
                         </Grid>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Paper className={classes.paper}>
-                            <ListOfGoods />
-                        </Paper>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12}>
+                            <Paper className={classes.paper}>
+                                <ListOfGoods />
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12}>
+                            <Paper className={classes.paper}>
+                                <OfferGoodsForm />
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12}>
+                            <Paper className={classes.paper}>
+                                <SearchGoodsForm />
+                            </Paper>
+                        </Grid>
                     </Grid>
                     <Box pt={4}>
-                        <Copyright />
                     </Box>
                 </Container>
             </main>
+            </Switch> */}
         </div >
     );
 }
-                        // {/* Chart */}
-                        // {/* <Grid item xs={12} md={8} lg={9}>
-                        //     <Paper className={fixedHeightPaper}>
-                        //     </Paper>
-                        // </Grid>
-                        // {/* Recent Deposits */}
-                        // {/*<Grid item xs={12} md={4} lg={3}>
-                        //     <Paper className={fixedHeightPaper}>
-                        //         <Deposits />
-                        //     </Paper>
-                        // </Grid> */}
-                        // {/* Recent Orders */}

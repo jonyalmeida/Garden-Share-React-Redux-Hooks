@@ -26,9 +26,9 @@ export function login(email, password) {
             },
             body: JSON.stringify({ email, password }),
         });
-        res.data = await res.json(); // { user: { ... }}
+        const { user } = await res.json(); // { user: { ... }}
         if (res.ok) {
-            dispatch(setUser(res.data));
+            dispatch(setUser(user));
         }
         return res;
     };

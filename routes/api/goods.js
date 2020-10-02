@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { Op } = require('sequelize');
 
-const { Product } = require('../../db/models');
+const { Product, User } = require('../../db/models');
 const { handleValidationErrors } = require('../util/validation');
 
 const router = new express.Router();
@@ -16,17 +16,24 @@ async function queryGoods(productName = '.*', vegetables = false, animal = false
     return await Product.findAll({
         where: {
             productName: {
-                [Op.regexp]: productName,
+                [Op.iRegexp]: productName,
             },
-            vegetables,
-            animal,
-            fruit,
+            [Op.or]: [{
+                vegetables
+            },
+            {
+                animal,
+            },
+            {
+                fruit,
+            }
+            ]
         },
     });
 }
 
 //list all products matching sellerId 
-router.get('/:id', asyncHandler(async function (req, res) {
+router.get('/:id/goods', asyncHandler(async function (req, res) {
     const sellerId = req.params.id;
     const goods = await Product.findAll({
         where: {
@@ -47,8 +54,15 @@ router.put('/offered', asyncHandler(async function (req, res) {
     } = req.body;
 
     const goodsQuery = await queryGoods(productName, vegetables, animal, fruit);
-
     res.json({ goodsQuery });
+}));
+
+//list all offers
+router.get('/allgoods', asyncHandler(async function (_req, res, _next) {
+    const goods = await Product.findAll({
+        include: [{ model: User }]
+    });
+    res.json({ goods });
 }));
 
 //create new goods listing
@@ -72,7 +86,7 @@ router.post('/', asyncHandler(async function (req, res) {
         productQty,
         productDescription
     });
-
+    console.log(good);
     res.json({ good });
 }));
 

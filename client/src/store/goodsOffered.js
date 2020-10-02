@@ -1,9 +1,17 @@
-const SET_GOODS_OFFERED = 'messages/SET_GOODS_OFFERED';
+const SET_GOODS_OFFERED = 'goodsOffered/SET_GOODS_OFFERED';
+const ADD_GOODS = 'goodsOffered/ADD_GOODS'
 
 export const setGoodsOffered = (goods) => {
     return {
         type: SET_GOODS_OFFERED,
         goods,
+    };
+};
+
+export const addGoods = (goods) => {
+    return {
+        type: ADD_GOODS,
+        goods
     };
 };
 
@@ -22,6 +30,10 @@ export default function GoodsReducer(state = [], action) {
     switch (action.type) {
         case SET_GOODS_OFFERED:
             return action.goods;
+        case ADD_GOODS:
+            let newState = state.slice();
+            newState.push(action.goods);
+            return newState;
         default:
             return state;
     }
