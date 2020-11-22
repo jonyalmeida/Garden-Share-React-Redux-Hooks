@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { login } from "../../store/auth";
+import { login } from "../../store/thunks/authThunks";
 
-export default function LoginForm() {
+export default function LoginForm({ isLoginOrSignup }) {
     const [email, setEmail] = useState("demo@example.com");
     const [password, setPassword] = useState("password");
 
@@ -44,7 +44,12 @@ export default function LoginForm() {
                 <button>Log in</button>
                 <p>
                     Not a member yet? Sign up{" "}
-                    <font className='form--auth-link'>here</font>.
+                    <font
+                        onClick={() => isLoginOrSignup(false)}
+                        className='form--auth-link'>
+                        here
+                    </font>
+                    .
                 </p>
             </form>
         </>

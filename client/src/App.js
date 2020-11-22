@@ -1,29 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setUser } from "./store/auth";
+import { restoreSession } from "./store/thunks/authThunks";
 
 import Landing from "./components/Landing";
 
 function App() {
-    const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
 
     const user = useSelector((state) => state.auth);
 
     useEffect(() => {
-        (async () => {
-            //enter the back end route to get the current user
-            const res = await fetch("/api/session");
-            if (res.ok) {
-                res.data = await res.json(); //current user info
-                dispatch(setUser(res.data.user));
-            }
-            setLoading(false);
-        })();
+        dispatch(restoreSession());
     }, [dispatch]);
-
-    if (loading) return null;
 
     return (
         <>
