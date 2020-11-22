@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { CssBaseline } from '@material-ui/core';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import Pages from './pages/Pages';
-import { setUser } from './store/auth';
+import { setUser } from "./store/auth";
+
+import Landing from "./components/Landing";
 
 function App() {
-
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
+
+    const user = useSelector((state) => state.auth);
 
     useEffect(() => {
         (async () => {
             //enter the back end route to get the current user
-            const res = await fetch('/api/session');
+            const res = await fetch("/api/session");
             if (res.ok) {
                 res.data = await res.json(); //current user info
                 dispatch(setUser(res.data.user));
@@ -27,10 +27,7 @@ function App() {
 
     return (
         <>
-            <CssBaseline />
-            <BrowserRouter>
-                <Pages />
-            </BrowserRouter>
+            <Landing />
         </>
     );
 }
