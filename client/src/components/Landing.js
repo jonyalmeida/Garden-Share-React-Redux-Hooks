@@ -11,8 +11,11 @@ export default function Landing() {
     const handleClick = (e) => {
         if (e.target.id === "login") setIsLoginOrSignup(true);
         if (e.target.id === "signup") setIsLoginOrSignup(false);
-        setShowModal(!showModal);
+        setShowModal(true);
+        console.log("CLIC");
     };
+
+    console.log(showModal);
 
     return (
         <>
@@ -58,14 +61,19 @@ export default function Landing() {
                     </p>
                 </div>
             </div>
-            {!showModal ? null : (
+            {showModal ? (
                 <Modal
                     componentToRender={
-                        isLoginOrSignup ? <LoginForm /> : <SignUpForm />
+                        isLoginOrSignup ? (
+                            <LoginForm isLoginOrSignup={setIsLoginOrSignup} />
+                        ) : (
+                            <SignUpForm isLoginOrSignup={setIsLoginOrSignup} />
+                        )
                     }
                     handleClick={handleClick}
+                    closeModal={setShowModal}
                 />
-            )}
+            ) : null}
         </>
     );
 }
