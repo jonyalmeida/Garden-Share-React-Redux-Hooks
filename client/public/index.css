@@ -96,6 +96,8 @@ html {
 html,
 body,
 #root {
+    padding-top: 1%;
+    padding-bottom: 3%;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -106,6 +108,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.icons-img {
+    max-width: 100px;
+    max-height: 50px;
 }
 
 /* --- Authentication --- */
@@ -126,9 +133,13 @@ body {
 
 /* --- Home Page --- */
 .home {
-    width: 90vw;
-    height: 80vh;
-    background-color: rgba(255, 255, 255, 0.8);
+    width: 95vw;
+    height: 90vh;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+}
+
+.home--content {
+    height: 100%;
 }
 
 .home--tabs {
@@ -140,7 +151,7 @@ body {
 }
 
 .home--tabs-tab {
-    padding-top: 1%;
+    margin-top: 1%;
     padding-left: 1%;
     padding-right: 1%;
     font-size: 2em;
@@ -234,6 +245,62 @@ body {
 /* --- Profile --- */
 .profile {
     display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: 30% 70%;
+    grid-template-rows: 100%;
+    grid-template-columns: 25% 75%;
+    height: 100%;
+}
+
+.profile--dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+}
+
+.profile--dashboard-personal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5%;
+    box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.profile--dashboard-personal_img {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.profile--dashboard-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.profile--dashboard-nav_item {
+    padding: 1%;
+    width: 75%;
+    height: auto;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 3%;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.profile--content {
+    margin-left: 1%;
+    width: 100%;
+    height: 100%;
+    box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
 }
