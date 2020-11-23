@@ -25,7 +25,7 @@ function App() {
         <>
             {user.id && <Logout />}
             {view === "home" ? (
-                <Home />
+                <Home user={user} />
             ) : view === "landing" ? (
                 <Landing />
             ) : null}
