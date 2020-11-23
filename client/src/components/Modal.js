@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group"; // ES6
 
-/* --- Modal CSS --- */
-
 export default function Modal({ componentToRender, closeModal }) {
     const [inProp, setInProp] = useState(false);
     setTimeout(() => {
@@ -29,12 +27,12 @@ export default function Modal({ componentToRender, closeModal }) {
                 classNames='alert'
                 unmountOnExit>
                 <div className='modal--content'>
-                    <p
+                    <button
                         id='close-modal-x'
                         className='modal--close'
                         onClick={closeModalOnClick}>
-                        X
-                    </p>
+                        x
+                    </button>
                     {componentToRender}
                 </div>
             </CSSTransition>

@@ -44,7 +44,6 @@ export default function SignUpForm({ isLoginOrSignup }) {
                 <label>
                     First name
                     <input
-                        style={{ display: "flex", flexShrink: "0" }}
                         variant='filled'
                         label='First Name'
                         type='text'
@@ -55,7 +54,6 @@ export default function SignUpForm({ isLoginOrSignup }) {
                 <label>
                     Last name
                     <input
-                        style={{ display: "flex", flexGrow: "2" }}
                         variant='filled'
                         label='Last Name'
                         type='text'
@@ -68,7 +66,6 @@ export default function SignUpForm({ isLoginOrSignup }) {
                 <label>
                     Email
                     <input
-                        style={{ display: "flex", flexGrow: "2" }}
                         variant='filled'
                         label='E-mail'
                         type='email'
@@ -79,7 +76,6 @@ export default function SignUpForm({ isLoginOrSignup }) {
                 <label>
                     Password
                     <input
-                        style={{ display: "flex", flexShrink: "0" }}
                         variant='filled'
                         label='Password'
                         type='password'
@@ -114,7 +110,6 @@ export default function SignUpForm({ isLoginOrSignup }) {
                 <label>
                     City
                     <input
-                        style={{ display: "flex", flexGrow: "3" }}
                         variant='filled'
                         label='City'
                         type='text'
@@ -125,7 +120,6 @@ export default function SignUpForm({ isLoginOrSignup }) {
                 <label>
                     State
                     <input
-                        style={{ display: "flex", flexShrink: "5" }}
                         variant='filled'
                         label='State'
                         type='text'
@@ -136,7 +130,6 @@ export default function SignUpForm({ isLoginOrSignup }) {
                 <label>
                     Zip code
                     <input
-                        style={{ display: "flex", flexShrink: "0" }}
                         variant='filled'
                         label='Zip Code'
                         type='text'

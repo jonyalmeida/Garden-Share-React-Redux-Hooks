@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import Trade from "./features/Trade";
 import Offer from "./features/Offer";
-import Profile from "./features/Profile";
+import Profile from "./features/profile/Profile";
 import Messages from "./features/Messages";
 
 export default function Home() {
