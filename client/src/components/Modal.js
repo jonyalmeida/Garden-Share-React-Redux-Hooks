@@ -2,24 +2,6 @@ import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group"; // ES6
 
 /* --- Modal CSS --- */
-const css = {
-    modalBackdrop: {
-        width: "200vh",
-        height: "100vh",
-        backgroundColor: "rgba(0,0,0,0.2)",
-        zIndex: "200",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        position: "absolute",
-    },
-    closeModal: {
-        fontSize: "2em",
-        justifySelf: "flex-end",
-        alignSelf: "start",
-        cursor: "pointer",
-    },
-};
 
 export default function Modal({ componentToRender, closeModal }) {
     const [inProp, setInProp] = useState(false);
@@ -40,8 +22,7 @@ export default function Modal({ componentToRender, closeModal }) {
         <div
             id='backdrop-area'
             className='modal--backdrop'
-            onClick={closeModalOnClick}
-            style={css.modalBackdrop}>
+            onClick={closeModalOnClick}>
             <CSSTransition
                 in={inProp}
                 timeout={300}
@@ -50,7 +31,7 @@ export default function Modal({ componentToRender, closeModal }) {
                 <div className='modal--content'>
                     <p
                         id='close-modal-x'
-                        style={css.closeModal}
+                        className='modal--close'
                         onClick={closeModalOnClick}>
                         X
                     </p>

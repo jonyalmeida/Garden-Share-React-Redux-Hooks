@@ -1,12 +1,4 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import RoomOutlinedIcon from '@material-ui/icons/Room';
-import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
-import MessageOutlinedIcon from '@material-ui/icons/Message';
-import ShoppingBasketOutlinedIcon from '@material-ui/icons/ShoppingBasket';
+import React from "react";
 
 export const mainListItems = (
     <div>
@@ -14,26 +6,26 @@ export const mainListItems = (
             <ListItemIcon>
                 <SearchOutlinedIcon />
             </ListItemIcon>
-            <ListItemText primary="Search Goods" />
+            <ListItemText primary='Search Goods' />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
                 <RoomOutlinedIcon />
             </ListItemIcon>
-            <ListItemText primary="Map Listings" />
+            <ListItemText primary='Map Listings' />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
                 <ShoppingBasketOutlinedIcon />
             </ListItemIcon>
-            <ListItemText primary="Offer Goods" />
+            <ListItemText primary='Offer Goods' />
         </ListItem>
-        <NavLink to='/messages' >
+        <NavLink to='/messages'>
             <ListItem button>
                 <ListItemIcon>
                     <MessageOutlinedIcon />
                 </ListItemIcon>
-                <ListItemText primary="Messages" />
+                <ListItemText primary='Messages' />
             </ListItem>
         </NavLink>
     </div>

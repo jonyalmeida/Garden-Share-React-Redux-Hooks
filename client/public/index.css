@@ -112,6 +112,53 @@ body {
     justify-content: center;
 }
 
+.auth-link {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Logout */
+.logout {
+    position: absolute;
+    z-index: 500;
+    top: 3%;
+    right: 3%;
+}
+
+/* Home Page */
+.home {
+    width: 90vw;
+    height: 80vh;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.home--tabs {
+    margin-top: -3%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.home--tabs-tab {
+    padding-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+    font-size: 2em;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.selected {
+    border-top: 3px solid green;
+    border-left: 3px solid green;
+    border-right: 3px solid green;
+}
+
+.not-selected {
+    border-bottom: 1px solid green;
+}
+
 /* Landing Page */
 .landing {
     width: 60vw;
@@ -133,11 +180,6 @@ body {
     justify-content: center;
 }
 
-.form--auth-link {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
 /* Modal */
 .visible {
     visibility: hidden;
@@ -152,6 +194,24 @@ body {
     z-index: 201;
     border-radius: 15px;
     border: 3px solid white;
+}
+
+.modal--backdrop {
+    width: 200vh;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.modal--close {
+    font-size: 2em;
+    justify-self: flex-end;
+    align-self: start;
+    cursor: pointer;
 }
 
 .alert-enter {

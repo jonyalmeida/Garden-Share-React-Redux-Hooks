@@ -12,10 +12,7 @@ export default function Landing() {
         if (e.target.id === "login") setIsLoginOrSignup(true);
         if (e.target.id === "signup") setIsLoginOrSignup(false);
         setShowModal(true);
-        console.log("CLIC");
     };
-
-    console.log(showModal);
 
     return (
         <>
@@ -47,16 +44,10 @@ export default function Landing() {
                         but in a community of respectful and friendly neighbors,
                         it should be easily possible.
                     </p>
-                    <p
-                        id='login'
-                        onClick={handleClick}
-                        className='landing--about--auth-links'>
+                    <p id='login' onClick={handleClick} className='auth-link'>
                         Log In
                     </p>
-                    <p
-                        id='signup'
-                        onClick={handleClick}
-                        className='landing--about--auth-links'>
+                    <p id='signup' onClick={handleClick} className='auth-link'>
                         Sign Up
                     </p>
                 </div>
