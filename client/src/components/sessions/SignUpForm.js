@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import Cookies from "js-cookie";
 
 import { registerUser } from "../../store/thunks/authThunks";
+import { setPage } from "../../store/actions/navActions";
 
 export default function SignUpForm({ isLoginOrSignup }) {
     const [firstName, setFirstName] = useState("");
@@ -22,7 +22,7 @@ export default function SignUpForm({ isLoginOrSignup }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await dispatch(
+        const res = await dispatch(
             registerUser(
                 email,
                 password,
@@ -32,6 +32,7 @@ export default function SignUpForm({ isLoginOrSignup }) {
                 userGeocode
             )
         );
+        if (res === "ok") dispatch(setPage("home"));
     };
 
     return (
@@ -149,7 +150,7 @@ export default function SignUpForm({ isLoginOrSignup }) {
                 Already a member?
                 <font
                     onClick={() => isLoginOrSignup(true)}
-                    className='form--auth-link'>
+                    className='auth-link'>
                     Log in
                 </font>
                 .

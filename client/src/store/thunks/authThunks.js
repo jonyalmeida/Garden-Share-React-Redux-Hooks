@@ -42,6 +42,7 @@ export function registerUser(
         if (res.ok) {
             dispatch(setUser(res.data));
             dispatch(login(email, password));
+            return "ok";
         }
     };
 }
@@ -73,9 +74,9 @@ export function logout() {
                 "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
             },
         });
-        console.log(res.cookies);
         if (res.ok) {
             dispatch(removeUser());
+            return "ok";
         }
     };
 }

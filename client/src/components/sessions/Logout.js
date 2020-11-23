@@ -1,21 +1,22 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { useDispatch } from "react-redux";
 
-import { logout } from '../../store/auth';
+import { logout } from "../../store/thunks/authThunks";
+import { setPage } from "../../store/actions/navActions";
 
 export default function LogoutUser() {
-
     const dispatch = useDispatch();
-    dispatch(logout());
 
+    const logoutClick = async () => {
+        await dispatch(logout());
+        dispatch(setPage("landing"));
+    };
 
-    //this.setState({ loggedOut: true }
     return (
-        <Redirect to='/enter' />
+        <div className='logout'>
+            <p className='auth-link' onClick={logoutClick}>
+                Logout
+            </p>
+        </div>
     );
 }
-
-
-
-

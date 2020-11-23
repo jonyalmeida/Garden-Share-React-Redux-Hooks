@@ -46,7 +46,7 @@ export default function LoginForm({ isLoginOrSignup }) {
                     Not a member yet? Sign up{" "}
                     <font
                         onClick={() => isLoginOrSignup(false)}
-                        className='form--auth-link'>
+                        className='auth-link'>
                         here
                     </font>
                     .
