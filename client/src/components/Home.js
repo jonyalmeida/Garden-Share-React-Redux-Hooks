@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
-import Trade from "./features/Trade";
-import Offer from "./features/Offer";
-import Profile from "./features/profile/Profile";
-import Messages from "./features/Messages";
+import Trade from "./trade/Trade";
+import OfferForm from "./trade/OfferForm";
+import Profile from "./profile/Profile";
 
 export default function Home({ user }) {
     const [homeNav, setHomeNav] = useState("profile");
@@ -13,14 +12,14 @@ export default function Home({ user }) {
             case "trade":
                 setHomeNav("trade");
                 break;
-            case "offer":
-                setHomeNav("offer");
+            case "offer-form":
+                setHomeNav("offer-form");
                 break;
             case "profile":
                 setHomeNav("profile");
                 break;
             default:
-                setHomeNav("offer");
+                setHomeNav("offer-form");
                 break;
         }
         document.querySelectorAll(".home--tabs-tab").forEach((item) => {
@@ -52,16 +51,16 @@ export default function Home({ user }) {
                     </div>
                     <div
                         onClick={navClick}
-                        id='offer'
+                        id='offerForm'
                         className='home--tabs-tab not-selected'>
-                        Offer
+                        OfferForm
                     </div>
                 </div>
                 <div className='home--content'>
                     {homeNav === "trade" ? (
                         <Trade />
-                    ) : homeNav === "offer" ? (
-                        <Offer />
+                    ) : homeNav === "offerForm" ? (
+                        <OfferForm />
                     ) : (
                         <Profile user={user} />
                     )}

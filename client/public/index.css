@@ -88,9 +88,9 @@ video {
 /* Site wide styling */
 
 html {
-    background-image: url("/images/farmers-market-bg.jpg");
+    /* background-image: url("/images/farmers-market-bg.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
 }
 
 html,
@@ -253,7 +253,6 @@ body {
 .profile--dashboard {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
     height: 100%;
 }
 
@@ -276,9 +275,10 @@ body {
 .profile--dashboard-nav {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     height: 100%;
+    overflow-y: scroll;
 }
 
 .profile--dashboard-nav_item {
@@ -294,6 +294,10 @@ body {
     border-radius: 15px;
     margin-bottom: 3%;
     background-color: rgba(255, 255, 255, 1);
+}
+
+.profile--dashboard-nav_item:hover {
+    cursor: pointer;
 }
 
 .profile--content {
