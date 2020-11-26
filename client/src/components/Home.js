@@ -4,6 +4,8 @@ import Trade from "./trade/Trade";
 import OfferForm from "./trade/OfferForm";
 import Profile from "./profile/Profile";
 
+import trade from "../public/images/trade.png";
+
 export default function Home({ user }) {
     const [homeNav, setHomeNav] = useState("profile");
 
@@ -48,18 +50,19 @@ export default function Home({ user }) {
                         id='trade'
                         className='home--tabs-tab not-selected'>
                         Trade
+                        <img src={trade} alt='trade' className='icons-img' />
                     </div>
                     <div
                         onClick={navClick}
-                        id='offerForm'
+                        id='offer-form'
                         className='home--tabs-tab not-selected'>
                         OfferForm
                     </div>
                 </div>
                 <div className='home--content'>
                     {homeNav === "trade" ? (
-                        <Trade />
-                    ) : homeNav === "offerForm" ? (
+                        <Trade user={user} />
+                    ) : homeNav === "offer-form" ? (
                         <OfferForm />
                     ) : (
                         <Profile user={user} />

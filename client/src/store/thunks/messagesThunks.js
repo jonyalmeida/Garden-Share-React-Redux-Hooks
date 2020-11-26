@@ -6,35 +6,39 @@ import {
     deleteMsg,
 } from "../actions/messagesActions";
 
-export function fetchMessages(currentUserId) {
+export function fetchMessages(userId) {
     return async (dispatch) => {
-        const res = await fetch(`/api/users/${currentUserId}/messages/`);
-        const { messages } = await res.json();
-        if (res.ok) {
+        const response = await fetch("/api/users/messages", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+            },
+            body: JSON.stringify({ userId: userId }),
+        });
+        const { messages } = await response.json();
+        if (response.ok) {
             dispatch(setMessages(messages));
         }
-        // console.log('data reducer', data.messages);
-        return res;
+        return response;
     };
 }
 
-export function postMessage(currentUserId, msg, receiverId, goodsId) {
+export function postMessage(senderId, msg, receiverId, goodsId) {
     return async (dispatch) => {
-        console.log(currentUserId, msg, receiverId, goodsId);
-        const res = await fetch(`/api/users/${currentUserId}/messages/`, {
+        const res = await fetch(`/api/users/messages/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
             },
-            body: JSON.stringify({ msg, receiverId, goodsId }),
+            body: JSON.stringify({ msg, senderId, receiverId, goodsId }),
         });
 
         const { sentMessage } = await res.json();
         if (res.ok) {
             dispatch(createMessage(sentMessage));
         }
-        console.log("create msg reducer", sentMessage);
         return res;
     };
 }
@@ -53,7 +57,6 @@ export function deleteMessage(msgId) {
         if (res.ok) {
             dispatch(deleteMsg(msgId));
         }
-        console.log("delete msg reducer");
         return res;
     };
 }

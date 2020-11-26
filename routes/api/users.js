@@ -1,50 +1,53 @@
-const express = require('express');
-const asyncHandler = require('express-async-handler');
-const { check } = require('express-validator');
-const { Op } = require('sequelize');
+const express = require("express");
+const asyncHandler = require("express-async-handler");
+const { check } = require("express-validator");
+const { Op } = require("sequelize");
 
-const { User, Message } = require('../../db/models');
-const { handleValidationErrors } = require('../util/validation');
-const { generateToken } = require('../util/auth');
-const { jwtConfig: { expiresIn } } = require('../../config');
+const { User, Message } = require("../../db/models");
+const { handleValidationErrors } = require("../util/validation");
+const { generateToken } = require("../util/auth");
+const {
+    jwtConfig: { expiresIn },
+} = require("../../config");
 
 const validateSignup = [
-    check('firstName', 'must be a your first name')
+    check("firstName", "must be a your first name")
         .exists()
         .isLength({ min: 2, max: 20 }),
-    check('lastName', 'must be a your last name')
+    check("lastName", "must be a your last name")
         .exists()
         .isLength({ min: 2, max: 120 }),
-    check('address', 'must be a valid US address')
+    check("address", "must be a valid US address")
         .exists()
         .isLength({ min: 5, max: 255 }),
-    check('email', 'must be a valid email address')
-        .exists()
-        .isEmail(),
-    check('password', 'must be 6 or more characters')
+    check("email", "must be a valid email address").exists().isEmail(),
+    check("password", "must be 6 or more characters")
         .exists()
         .isLength({ min: 6, max: 70 }),
 ];
 
 const router = express.Router();
 
-router.get('/', asyncHandler(async function (_req, res, _next) {
-    const users = await User.findAll();
-    res.json({ users });
-}));
+router.get(
+    "/",
+    asyncHandler(async function (_req, res, _next) {
+        const users = await User.findAll();
+        res.json({ users });
+    })
+);
 
 router.post(
-    '/',
+    "/",
     validateSignup,
     handleValidationErrors,
     asyncHandler(async function (req, res) {
         const user = await User.signup(req.body);
 
         const token = await generateToken(user);
-        res.cookie('token', token, {
+        res.cookie("token", token, {
             maxAge: expiresIn * 1000,
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            secure: process.env.NODE_ENV === "production",
             sameSite: true,
         });
 
@@ -55,70 +58,65 @@ router.post(
 );
 
 const validateMessage = [
-    check('message', 'must include a message')
-        .exists(),
-    check('senderId', 'must be a valid user id integer')
-        .exists(),
-    check('receiverId', 'must be a valid user id integer')
-        .exists()
+    check("message", "must include a message").exists(),
+    check("senderId", "must be a valid user id integer").exists(),
+    check("receiverId", "must be a valid user id integer").exists(),
 ];
 
-router.get('/:id/messages', asyncHandler(async function (req, res, next) {
-    const receiverId = parseInt(req.params.id);
-    const senderId = parseInt(req.params.id);
-    const messages = await Message.findAll({
-        where: {
-            [Op.or]: [
-                {
-                    receiverId,
-                },
-                {
-                    senderId,
-                }
-            ],
-        },
-        include: [{ model: User }]
-    });
-    res.json({ messages });
-}));
+router.put(
+    "/messages",
+    asyncHandler(async function (req, res, next) {
+        const receiverId = req.body.userId;
+        const senderId = req.body.userId;
+        const messages = await Message.findAll({
+            where: {
+                [Op.or]: [
+                    {
+                        receiverId,
+                    },
+                    {
+                        senderId,
+                    },
+                ],
+            },
+            include: [{ model: User }],
+        });
+        res.json({ messages });
+    })
+);
 
-router.post('/:id/messages', asyncHandler(async function (req, res) {
+router.post(
+    "/messages",
+    asyncHandler(async function (req, res) {
+        const { msg, senderId, receiverId, goodsId } = req.body;
 
-    const senderId = parseInt(req.params.id);
+        const text = await Message.create({
+            message: msg,
+            receiverId,
+            senderId,
+            goodsId,
+        });
 
-    const {
-        msg,
-        receiverId,
-        goodsId,
-    } = req.body;
+        const sentMessage = await Message.findOne({
+            where: {
+                message: msg,
+            },
+            include: [{ model: User }],
+        });
 
-    console.log(msg, receiverId, goodsId, senderId)
+        res.json({ sentMessage });
+    })
+);
 
-    const text = await Message.create({
-        message: msg,
-        receiverId,
-        senderId,
-        goodsId
-    });
-
-    const sentMessage = await Message.findOne({
-        where: {
-            message: msg
-        },
-        include: [{ model: User }],
-    });
-
-    res.json({ sentMessage });
-}));
-
-router.delete('/msgs', asyncHandler(async function (req, res) {
-    console.log('delete message back end');
-    const { msgId } = req.body;
-    console.log(msgId);
-    const message = await Message.findByPk(msgId);
-    await message.destroy();
-    res.send('success');
-}));
+router.delete(
+    "/msgs",
+    asyncHandler(async function (req, res) {
+        const { msgId } = req.body;
+        const message = await Message.findByPk(msgId);
+        await message.destroy();
+        res.send("success");
+    })
+);
 
 // router.post('/:id/messages/reply', validateMessage, handleValidationErrors, asyncHandler(async function (req, res) {
 

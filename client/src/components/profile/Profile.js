@@ -1,30 +1,24 @@
 import React, { useState } from "react";
 
 import chicken from "./../../public/images/e91e3704962a9a62d44fcfdca5a5d23e.jpg";
-import trade from "./../../public/images/trade.png";
 import dottedLine from "./../../public/images/dotted-line.png";
 import produce from "./../../public/images/bag-of-produce.svg";
 import cog from "./../../public/images/cog-preferences.svg";
 
-import Messages from "./Messages";
+import Messages from "./messages/Messages";
 import MyOffers from "./MyOffers";
 import Preferences from "./Preferences";
 
 export default function Profile({ user }) {
     const [contentNav, setContentNav] = useState("messages");
-    console.log(user);
 
     const clickContentNav = (e) => {
-        console.log("CLICK");
-        console.log(e.target.id);
         switch (e.target.id) {
             case "messages":
                 setContentNav("messages");
                 break;
             case "my-offers":
-                console.log("MY OFFERS");
                 setContentNav("my-offers");
-                console.log(contentNav);
                 break;
             case "preferences":
                 setContentNav("preferences");
@@ -58,10 +52,6 @@ export default function Profile({ user }) {
                     </p>
                 </div>
                 <div className='profile--dashboard-nav'>
-                    <div id='trade' className='profile--dashboard-nav_item'>
-                        Trade
-                        <img src={trade} alt='trade' className='icons-img' />
-                    </div>
                     <div
                         onClick={clickContentNav}
                         id='messages'

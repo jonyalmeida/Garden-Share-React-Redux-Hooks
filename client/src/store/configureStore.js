@@ -4,13 +4,15 @@ import thunk from "redux-thunk";
 import auth from "./reducers/authReducer";
 import nav from "./reducers/navReducer";
 import msgs from "./reducers/messagesReducer";
-import goods from "./reducers/goodsOfferedReducer";
+import myGoods from "./reducers/userGoodsReducer";
+import allGoods from "./reducers/goodsForTradeReducer";
 
 const rootReducer = combineReducers({
     auth,
     nav,
     msgs,
-    goods,
+    myGoods,
+    allGoods,
 });
 
 let storeEnhancer;
