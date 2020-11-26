@@ -6,11 +6,16 @@ import { fetchUserOffers } from "../../store/thunks/userGoodsThunks";
 export default function MyOffers({ user }) {
     const dispatch = useDispatch();
 
-    const myOffers = useSelector((state) => state.goods);
-
+    const myOffers = useSelector((state) => state.myGoods);
+    console.log(myOffers);
     useEffect(() => {
         dispatch(fetchUserOffers(user.id));
-    }, [dispatch, user.id, fetchUserOffers]);
-
-    return <h1>My Offers</h1>;
+    }, [dispatch, user.id]);
+    return (
+        <div>
+            {myOffers.map((item, idx) => (
+                <div key={idx}>{item.productName}</div>
+            ))}
+        </div>
+    );
 }

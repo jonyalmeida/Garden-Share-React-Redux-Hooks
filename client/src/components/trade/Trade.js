@@ -11,7 +11,7 @@ export default function Trade({ user }) {
     useEffect(() => {
         console.log("USERID", user.id);
         dispatch(fetchGoodsForTrade(user.id));
-    }, [dispatch, user.id, fetchGoodsForTrade]);
+    }, [dispatch, user.id]);
     return (
         <div>
             <ul>
