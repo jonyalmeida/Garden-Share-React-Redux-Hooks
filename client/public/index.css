@@ -88,6 +88,8 @@ video {
 /* Site wide styling */
 
 html {
+    font-family: "Dancing Script", cursive;
+
     /* background-image: url("/images/farmers-market-bg.jpg");
     background-repeat: no-repeat;
     background-size: cover; */
@@ -181,7 +183,6 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    font-family: "Dancing Script", cursive;
 }
 
 .landing--splash p {
@@ -224,12 +225,53 @@ body {
 
 /* --- Log in & Sign up forms --- */
 .form--auth {
-    padding: 3%;
-    width: 40vw;
-    height: 50vh;
+    min-width: 400px;
+    min-height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.form--auth-label {
+    width: 100%;
+}
+
+.form--auth-login {
+    width: auto;
+    border-radius: 12px;
+    box-shadow: 7px 7px 5px rgba(128, 102, 0, 0.5);
+    padding: 1.5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 5%;
+    transition: all 100ms ease-out;
+}
+
+.form--auth-login:hover {
+    font-size: 1.2em;
+    background-color: rgba(128, 102, 0, 0.5);
+    color: white;
+}
+
+.form--auth-label-input {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.form--auth-label-input label {
+    font-size: larger;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 3%;
+}
+
+.form--auth-label-input label input {
+    box-shadow: rgba(0, 0, 0, 0.5);
+    padding: 1%;
 }
 
 /* --- Modal --- */

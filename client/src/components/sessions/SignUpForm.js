@@ -40,110 +40,115 @@ export default function SignUpForm({ isLoginOrSignup }) {
             className='form--auth'
             onSubmit={handleSubmit}
             style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ display: "flex", flexDirection: "row" }}>
-                <label>
-                    First name
-                    <input
-                        variant='filled'
-                        label='First Name'
-                        type='text'
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Last name
-                    <input
-                        variant='filled'
-                        label='Last Name'
-                        type='text'
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                    />
-                </label>
+            <div className='form--auth-label'>
+                <div className='form--auth-label-input'>
+                    <label>
+                        First name:&nbsp;&nbsp;&nbsp;
+                        <input
+                            variant='filled'
+                            label='First Name'
+                            type='text'
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        Last name:&nbsp;&nbsp;&nbsp;
+                        <input
+                            variant='filled'
+                            label='Last Name'
+                            type='text'
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                        />
+                    </label>
+                </div>
             </div>
-            <div style={{ display: "flex", flexDirection: "row" }}>
-                <label>
-                    Email
-                    <input
-                        variant='filled'
-                        label='E-mail'
-                        type='email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Password
-                    <input
-                        variant='filled'
-                        label='Password'
-                        type='password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </label>
+            <div className='form--auth-label'>
+                <div className='form--auth-label-input'>
+                    <label>
+                        Email:&nbsp;&nbsp;&nbsp;
+                        <input
+                            variant='filled'
+                            label='E-mail'
+                            type='email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        Password:&nbsp;&nbsp;&nbsp;
+                        <input
+                            variant='filled'
+                            label='Password'
+                            type='password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </label>
+                </div>
             </div>
             <h1 style={{ textAlign: "center" }}>Address</h1>
-            <label>
-                Address
-                <input
-                    id='autocomplete'
-                    variant='filled'
-                    label='Full Address'
-                    type='text'
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                />
-            </label>
-            <label>
-                Address
-                <input
-                    variant='filled'
-                    label='Street Address'
-                    type='text'
-                    value={streetAddress}
-                    onChange={(e) => setStreetAddress(e.target.value)}
-                />
-            </label>
-            <div style={{ display: "flex", flexDirection: "row" }}>
+            <div className='form--auth-label-input'>
                 <label>
-                    City
+                    Address:&nbsp;&nbsp;&nbsp;
                     <input
+                        id='autocomplete'
                         variant='filled'
-                        label='City'
+                        label='Full Address'
                         type='text'
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                    />
-                </label>
-                <label>
-                    State
-                    <input
-                        variant='filled'
-                        label='State'
-                        type='text'
-                        value={state}
-                        onChange={(e) => setState(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Zip code
-                    <input
-                        variant='filled'
-                        label='Zip Code'
-                        type='text'
-                        value={zipCode}
-                        onChange={(e) => setZipCode(e.target.value)}
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
                     />
                 </label>
             </div>
-            <button>Sign Up</button>
+            <div className='form--auth-label'>
+                <div className='form--auth-label-input'>
+                    <label>
+                        City:&nbsp;&nbsp;&nbsp;
+                        <input
+                            variant='filled'
+                            label='City'
+                            type='text'
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                        />
+                    </label>
+                </div>
+                <div className='form--auth-label-input'>
+                    <label>
+                        State:&nbsp;&nbsp;&nbsp;
+                        <input
+                            variant='filled'
+                            label='State'
+                            type='text'
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                        />
+                    </label>
+                </div>
+                <div className='form--auth-label-input'>
+                    <label>
+                        Zip code:&nbsp;&nbsp;&nbsp;
+                        <input
+                            variant='filled'
+                            label='Zip Code'
+                            type='text'
+                            value={zipCode}
+                            onChange={(e) => setZipCode(e.target.value)}
+                        />
+                    </label>
+                </div>
+            </div>
+            <div onClick={handleSubmit} className='form--auth-login auth-link'>
+                Sign Up
+            </div>
             <p>
                 Already a member?
                 <font
                     onClick={() => isLoginOrSignup(true)}
-                    className='auth-link'>
+                    className='auth-link'
+                    style={{ textDecoration: "underline" }}>
                     Log in
                 </font>
                 .

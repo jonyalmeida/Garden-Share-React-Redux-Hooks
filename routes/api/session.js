@@ -21,6 +21,7 @@ router.get(
     "/",
     requireUser,
     asyncHandler(async function (req, res, next) {
+        console.log("GET AUTH");
         if (req.user) {
             return res.json({
                 user: req.user,

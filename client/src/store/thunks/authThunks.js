@@ -5,11 +5,11 @@ import { setUser, removeUser } from "../actions/authActions";
 export function restoreSession() {
     return async (dispatch) => {
         //enter the back end route to get the current user
-        const res = await fetch("/api/session");
-
-        if (res.ok) {
-            res.data = await res.json(); //current user info
-            dispatch(setUser(res.data.user));
+        const response = await fetch("/api/session");
+        const data = await response.json(); //current user info
+        console.log(data);
+        if (response.ok) {
+            dispatch(setUser(data.user));
         }
     };
 }
