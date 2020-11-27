@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 export default function Message({ item }) {
     const user = useSelector((state) => state.auth);
 
-    const senderId = item.receiverId;
-    const receiverId = item.senderId;
-    const goodsId = item.goodsId;
+    // const senderId = item.receiverId;
+    // const receiverId = item.senderId;
+    // const goodsId = item.goodsId;
 
     const messageReplyClick = (e) => {};
 

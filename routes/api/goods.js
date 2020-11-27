@@ -70,6 +70,7 @@ router.put(
                     },
                 ],
             },
+            include: [{ model: User }],
         });
 
         console.log(myGoods);

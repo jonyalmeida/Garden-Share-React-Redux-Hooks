@@ -7,7 +7,7 @@ import Profile from "./profile/Profile";
 import trade from "../public/images/trade.png";
 
 export default function Home({ user }) {
-    const [homeNav, setHomeNav] = useState("profile");
+    const [homeNav, setHomeNav] = useState("trade");
 
     const navClick = (e) => {
         switch (e.target.id) {
@@ -42,20 +42,20 @@ export default function Home({ user }) {
                     <div
                         onClick={navClick}
                         id='profile'
-                        className='home--tabs-tab selected'>
+                        className='home--tabs-tab selected auth-link'>
                         my Garden
                     </div>
                     <div
                         onClick={navClick}
                         id='trade'
-                        className='home--tabs-tab not-selected'>
+                        className='home--tabs-tab not-selected auth-link'>
                         Trade
                         <img src={trade} alt='trade' className='icons-img' />
                     </div>
                     <div
                         onClick={navClick}
                         id='offer-form'
-                        className='home--tabs-tab not-selected'>
+                        className='home--tabs-tab not-selected auth-link'>
                         OfferForm
                     </div>
                 </div>

@@ -7,7 +7,6 @@ export function restoreSession() {
         //enter the back end route to get the current user
         const response = await fetch("/api/session");
         const data = await response.json(); //current user info
-        console.log(data);
         if (response.ok) {
             dispatch(setUser(data.user));
         }

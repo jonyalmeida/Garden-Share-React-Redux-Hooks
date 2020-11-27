@@ -28,7 +28,7 @@ export default function Landing() {
                     <h2>Virtual Community Garden</h2>
                     <p>
                         An app where people can share / trade their excess
-                        produce and farm products.
+                        produce and farm products with their neighbors.
                     </p>
                 </div>
             </div>
