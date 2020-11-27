@@ -11,6 +11,7 @@ const {
 } = require("../util/auth");
 const {
     jwtConfig: { expiresIn },
+    gkey,
 } = require("../../config");
 
 const router = express.Router();
@@ -25,6 +26,7 @@ router.get(
         if (req.user) {
             return res.json({
                 user: req.user,
+                gkey: gkey,
             });
         }
         next(new AuthenticationError());

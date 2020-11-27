@@ -11,4 +11,5 @@ module.exports = {
         secret: process.env.JWT_SECRET_KEY,
         expiresIn: process.env.JWT_EXPIRES_IN,
     },
+    gkey: process.env.REACT_APP_GOOGLE_API_KEY,
 };
