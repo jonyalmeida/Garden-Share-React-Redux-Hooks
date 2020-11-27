@@ -6,6 +6,7 @@ import nav from "./reducers/navReducer";
 import msgs from "./reducers/messagesReducer";
 import myGoods from "./reducers/userGoodsReducer";
 import allGoods from "./reducers/goodsForTradeReducer";
+import gkey from "./reducers/gKeyReducer";
 
 const rootReducer = combineReducers({
     auth,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     msgs,
     myGoods,
     allGoods,
+    gkey,
 });
 
 let storeEnhancer;

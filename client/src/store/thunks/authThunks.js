@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 
 import { setUser, removeUser } from "../actions/authActions";
+import { setKey } from "../actions/gKeyActions";
 
 export function restoreSession() {
     return async (dispatch) => {
@@ -9,6 +10,7 @@ export function restoreSession() {
         const data = await response.json(); //current user info
         if (response.ok) {
             dispatch(setUser(data.user));
+            dispatch(setKey(data.gkey));
         }
     };
 }

@@ -98,7 +98,6 @@ html {
 html,
 body,
 #root {
-    padding-bottom: 3%;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -133,22 +132,20 @@ body {
 
 /* --- Home Page --- */
 .home {
-    width: 95vw;
-    height: 90vh;
+    width: 100vw;
     /* background-color: rgba(255, 255, 255, 0.8); */
 }
 
 .home--content {
-    height: 100%;
 }
 
 .home--tabs {
     width: 100%;
-    min-height: 100px;
+    /* min-heigh    t: 50px; */
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-bottom: 3%;
+    /* margin-bottom: 3%; */
 }
 
 .home--tabs-tab {
@@ -331,7 +328,8 @@ body {
     display: grid;
     grid-template-rows: 100%;
     grid-template-columns: 25% 75%;
-    height: 90%;
+    height: 90vh;
+    align-items: center;
 }
 
 .profile--dashboard {
@@ -387,11 +385,6 @@ body {
 .profile--content {
     display: flex;
     justify-content: center;
-    width: 100%;
-    height: 100%;
-    box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.9);
 }
 
 /* Trading */
