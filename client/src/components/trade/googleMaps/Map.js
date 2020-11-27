@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback, useRef } from "react";
 import {
     GoogleMap,
     useLoadScript,
@@ -8,6 +8,7 @@ import {
 import { formatRelative } from "date-fns";
 
 import mapStyles from "./mapStyle";
+import basketIcon from "../../../public/images/products-basket-marker-icon.png";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -22,10 +23,11 @@ const options = {
 };
 
 export default function Map({ productsLocationList = [], zoomLevel }) {
-    console.log(productsLocationList[0][0]);
+    const [selected, setSelected] = useState({});
+
     const center = {
-        lat: Number(productsLocationList[0][0]),
-        lng: Number(productsLocationList[0][1]),
+        lat: productsLocationList[0].itemLat,
+        lng: productsLocationList[0].itemLng,
     };
 
     const { isLoaded, loadError } = useLoadScript({
@@ -33,9 +35,15 @@ export default function Map({ productsLocationList = [], zoomLevel }) {
         libraries,
     });
 
+    const mapRef = useRef();
+    const onMapLoad = useCallback((map) => {
+        mapRef.current = map;
+    }, []);
+
     if (loadError) return "Error loading maps.";
     if (!isLoaded) return "Loading maps..";
 
+    console.log(selected);
     return (
         <>
             <div>
@@ -43,43 +51,42 @@ export default function Map({ productsLocationList = [], zoomLevel }) {
                     mapContainerStyle={mapContainerStyle}
                     zoom={8}
                     center={center}
-                    options={options}></GoogleMap>
+                    options={options}
+                    onLoad={onMapLoad}>
+                    {productsLocationList.map((item, idx) => (
+                        <Marker
+                            onClick={() => {
+                                setSelected(item);
+                            }}
+                            key={idx}
+                            position={{
+                                lat: Number(item.itemLat),
+                                lng: Number(item.itemLng),
+                            }}
+                            icon={{
+                                url: "/images/products-basket-marker-icon.png",
+                                scaledSize: new window.google.maps.Size(45, 45),
+                                origin: new window.google.maps.Point(0, 0),
+                                anchor: new window.google.maps.Point(15, 15),
+                            }}
+                        />
+                    ))}
+
+                    {selected.itemName ? (
+                        <InfoWindow
+                            position={{
+                                lat: selected.itemLat,
+                                lng: selected.itemLng,
+                            }}>
+                            <>
+                                <h1>{selected.itemName}</h1>
+                                <h3>{selected.itemQty}</h3>
+                                <p>{selected.itemDescription}</p>
+                            </>
+                        </InfoWindow>
+                    ) : null}
+                </GoogleMap>
             </div>
         </>
     );
 }
-
-//     return (
-//         <div className='google-map'>
-//             <GoogleMapReact
-//                 disableDefaultUI={true}
-//                 styles=
-//                 bootstrapURLKeys={{
-//                     key: `${key}`,
-//                 }}
-//                 defaultCenter={{
-//                     lat: Number(productsLocationList[0][0]),
-//                     lng: Number(productsLocationList[0][1]),
-//                 }}
-//                 defaultZoom={zoomLevel}>
-//                 {productsLocationList.map((item, idx) => (
-//                     <LocationPin
-//                         key={idx}
-//                         lat={Number(item[0])}
-//                         lng={Number(item[1])}
-//                         text='This will be a short description of the product. Maybe this amount of words of less.'
-//                     />
-//                 ))}
-//             </GoogleMapReact>
-//         </div>
-//     );
-// }
-
-// function LocationPin({ text }) {
-//     return (
-//         <div className='pin'>
-//             <Icon icon={locationIcon} className='pin-icon' />
-//             <p className='pin-text'>{text}</p>
-//         </div>
-//     );
-// }
