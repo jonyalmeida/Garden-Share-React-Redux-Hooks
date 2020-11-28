@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import ProductListing from "./ProductListing";
@@ -7,6 +7,8 @@ import Map from "./googleMaps/Map";
 import { fetchGoodsForTrade } from "../../store/thunks/goodsForTradeThunks";
 
 export default function Trade({ user }) {
+    const [view, setView] = useState("map");
+
     const dispatch = useDispatch();
 
     const allGoods = useSelector((state) => state.allGoods);
@@ -32,19 +34,25 @@ export default function Trade({ user }) {
 
     console.log(productsLocationList);
 
-    // return (
-    //     <>
-    //         {productsLocationList.length > 0 ? (
-    //             <Map
-    //                 productsLocationList={productsLocationList}
-    //                 zoomLevel={12}
-    //             />
-    //         ) : null}
-    //     </>
-    // );
+    const mapper = (
+        <>
+            <font id='listing' onClick={(e) => setView(e.target.id)}>
+                View listing
+            </font>
+            {productsLocationList.length > 0 ? (
+                <Map
+                    productsLocationList={productsLocationList}
+                    zoomLevel={12}
+                />
+            ) : null}
+        </>
+    );
 
-    return (
+    const lister = (
         <div className='trading'>
+            <font id='map' onClick={(e) => setView(e.target.id)}>
+                View map
+            </font>
             <h3>Vegetables</h3>
             <div className='trading--group vegetables'>
                 {allGoods
@@ -71,4 +79,6 @@ export default function Trade({ user }) {
             </div>
         </div>
     );
+
+    return view === "map" ? mapper : lister;
 }
