@@ -108,29 +108,21 @@ router.get(
 
 //create new goods listing
 router.post(
-    "/",
+    "/create-offer",
     asyncHandler(async function (req, res) {
-        const {
-            productName,
-            vegetable,
-            fruit,
-            animal,
-            sellerId,
-            productQty,
-            productDescription,
-        } = req.body;
-
+        const { product, userId } = req.body;
+        console.log(product, userId);
         const good = await Product.create({
-            productName,
-            vegetable,
-            fruit,
-            animal,
-            sellerId,
-            productQty,
-            productDescription,
+            ...product,
+            sellerId: userId,
         });
         console.log(good);
-        res.json({ good });
+        const myGoods = await Product.findAll({
+            where: {
+                sellerId: userId,
+            },
+        });
+        res.json({ myGoods });
     })
 );
 

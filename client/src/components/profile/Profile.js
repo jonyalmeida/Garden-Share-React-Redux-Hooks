@@ -10,7 +10,7 @@ import MyOffers from "./MyOffers";
 import Preferences from "./Preferences";
 
 export default function Profile({ user }) {
-    const [contentNav, setContentNav] = useState("messages");
+    const [contentNav, setContentNav] = useState("my-offers");
 
     const clickContentNav = (e) => {
         switch (e.target.id) {

@@ -1,12 +1,17 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
-export default function OfferForm() {
+import { createOffer } from "../../store/thunks/userGoodsThunks";
+
+export default function OfferForm({ user }) {
     const [name, setName] = useState("");
     const [qty, setQty] = useState("");
     const [description, setDescription] = useState("");
     const [vegetables, setVegetables] = useState(true);
     const [animal, setAnimal] = useState(false);
     const [fruit, setFruit] = useState(false);
+
+    const dispatch = useDispatch();
 
     const onClickSelect = (e) => {
         console.log(e.target.id);
@@ -30,12 +35,28 @@ export default function OfferForm() {
         }
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const product = {
+            productName: name,
+            productQty: qty,
+            productDescription: description,
+            vegetables: vegetables,
+            animal: animal,
+            fruit: fruit,
+        };
+
+        dispatch(createOffer(user.id, product));
+    };
+
     return (
         <div className='offer'>
-            <form className='offer--form'>
+            <form noValidate className='offer--form'>
                 <div className='offer--form-item'>
                     <label name='product-name'>Product name: </label>
                     <input
+                        required
                         placeholder='ie.: Fresh organic carrots'
                         name='product-name'
                         onChange={(e) => setName(e.target.value)}
@@ -44,6 +65,7 @@ export default function OfferForm() {
                 <div className='offer--form-item'>
                     <label name='product-qty'>Product quantity: </label>
                     <input
+                        required
                         placeholder='ie.: 9 x 1lb bunches of lettuce'
                         name='product-qty'
                         onChange={(e) => setQty(e.target.value)}
@@ -54,6 +76,7 @@ export default function OfferForm() {
                         Product description:{" "}
                     </label>
                     <textarea
+                        required
                         placeholder='ie.: The tomato is the edible berry of the plant Solanum lycopersicum, commonly known as a tomato plant. The species originated in western South America and Central America.'
                         name='product-description'
                         rows='5'
@@ -99,6 +122,7 @@ export default function OfferForm() {
                         <label htmlFor='fruit'>Fruits</label>
                     </div>
                 </div>
+                <button onClick={handleSubmit}>Create offer</button>
             </form>
         </div>
     );

@@ -13,11 +13,30 @@ export function fetchUserOffers(userId) {
             body: JSON.stringify({ userId: userId }),
         });
 
-        const goods = await response.json();
-
         if (response.ok) {
+            const goods = await response.json();
             dispatch(setGoodsOffered(goods));
         }
+        return response;
+    };
+}
+
+export function createOffer(userId, product) {
+    return async (dispatch) => {
+        const response = await fetch(`/api/goods/create-offer`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+            },
+            body: JSON.stringify({ userId: userId, product }),
+        });
+
+        if (response.ok) {
+            // const goods = await response.json();
+            // dispatch(setGoodsOffered(goods));
+        }
+
         return response;
     };
 }

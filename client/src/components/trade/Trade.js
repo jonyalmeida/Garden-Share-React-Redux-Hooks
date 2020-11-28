@@ -32,43 +32,43 @@ export default function Trade({ user }) {
 
     console.log(productsLocationList);
 
-    return (
-        <>
-            {productsLocationList.length > 0 ? (
-                <Map
-                    productsLocationList={productsLocationList}
-                    zoomLevel={12}
-                />
-            ) : null}
-        </>
-    );
-
     // return (
-    //     <div className='trading'>
-    //         <div className='trading--group vegetables'>
-    //             <h3>Vegetables</h3>
-    //             {allGoods
-    //                 .filter((item) => item.vegetables)
-    //                 .map((item, idx) => (
-    //                     <ProductListing key={idx} item={item} />
-    //                 ))}
-    //         </div>
-    //         <div className='trading--group animal'>
-    //             <h3>Animal</h3>
-    //             {allGoods
-    //                 .filter((item) => item.animal)
-    //                 .map((item, idx) => (
-    //                     <ProductListing key={idx} item={item} />
-    //                 ))}
-    //         </div>
-    //         <div className='trading--group fruits'>
-    //             <h3>Fruits</h3>
-    //             {allGoods
-    //                 .filter((item) => item.fruit)
-    //                 .map((item, idx) => (
-    //                     <ProductListing key={idx} item={item} />
-    //                 ))}
-    //         </div>
-    //     </div>
+    //     <>
+    //         {productsLocationList.length > 0 ? (
+    //             <Map
+    //                 productsLocationList={productsLocationList}
+    //                 zoomLevel={12}
+    //             />
+    //         ) : null}
+    //     </>
     // );
+
+    return (
+        <div className='trading'>
+            <h3>Vegetables</h3>
+            <div className='trading--group vegetables'>
+                {allGoods
+                    .filter((item) => item.vegetables)
+                    .map((item, idx) => (
+                        <ProductListing key={idx} item={item} />
+                    ))}
+            </div>
+            <h3>Animal</h3>
+            <div className='trading--group animal'>
+                {allGoods
+                    .filter((item) => item.animal)
+                    .map((item, idx) => (
+                        <ProductListing key={idx} item={item} />
+                    ))}
+            </div>
+            <h3>Fruits</h3>
+            <div className='trading--group fruits'>
+                {allGoods
+                    .filter((item) => item.fruit)
+                    .map((item, idx) => (
+                        <ProductListing key={idx} item={item} />
+                    ))}
+            </div>
+        </div>
+    );
 }

@@ -12,10 +12,20 @@ export default function ProductListing({ item }) {
 
     return (
         <div className='product--listing'>
-            <p>Name: {name}</p>
-            <p>Quantity: {qty}</p>
-            <p>Description: {description}</p>
-            <p>Posted: {date}</p>
+            <p>
+                <strong>Name:</strong> {name}
+            </p>
+            <p>
+                <strong>Quantity:</strong> {qty}
+            </p>
+            <p>
+                <strong>Description:</strong> {description}
+            </p>
+            <p>
+                <strong>Posted:</strong> {date}
+            </p>
+            <button>Trade</button>
+            <button>Message</button>
         </div>
     );
 }
