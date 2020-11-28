@@ -133,6 +133,7 @@ body {
 /* --- Home Page --- */
 .home {
     width: 100vw;
+    height: 100vh;
     /* background-color: rgba(255, 255, 255, 0.8); */
 }
 
@@ -413,4 +414,44 @@ body {
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.9);
     text-align: center;
+}
+
+/* Offer form */
+.offer {
+    width: 100vw;
+    margin-top: 10%;
+    display: flex;
+    font-size: 1.5em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.offer--form {
+    width: 800px;
+    font-size: 1.5em;
+}
+
+.offer--form-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 5%;
+}
+
+.offer--form-item input,
+.offer--form-item textarea {
+    width: 60%;
+}
+
+.offer--form-item textarea {
+    height: 75px;
+}
+
+input,
+textarea,
+select {
+    outline: none;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    /* border-radius: 15px; */
 }

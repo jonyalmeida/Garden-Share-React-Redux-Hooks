@@ -7,7 +7,7 @@ import Profile from "./profile/Profile";
 import trade from "../public/images/trade.png";
 
 export default function Home({ user }) {
-    const [homeNav, setHomeNav] = useState("trade");
+    const [homeNav, setHomeNav] = useState("offer-form");
 
     const navClick = (e) => {
         switch (e.target.id) {
