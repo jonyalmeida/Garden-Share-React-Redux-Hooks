@@ -1,6 +1,6 @@
 # Welcome to Garden Share!-
 **An app where people can share / trade their excess produce and farm products.**
-Jony Almeida - junior full stack dev
+by Jony Almeida - full stack software developer
 # App Description
 -   Garden Share is intended as a virtual hub, where registered members can offer and / or trade their excess produce or farm products with their neighbors and community.
 -   The app is meant to be simple and offer an intuitive UI making it possible for users to exchange goods with ease.
