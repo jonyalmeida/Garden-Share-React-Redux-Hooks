@@ -27,8 +27,23 @@ export default function Landing() {
                 <div>
                     <h2>Virtual Community Garden</h2>
                     <p>
-                        An app where people can share / trade their excess
-                        produce and farm products with their neighbors.
+                        Whether you have a garden, a farm or maybe a fertile
+                        tree, Garden Share makes it easy to put your extra
+                        produce up for trade, sale or donation to your
+                        community.
+                    </p>
+                    <br />
+                    <p>
+                        Meet your neighbors, trade delicious organic food with
+                        folks that care as much as you do about the food your
+                        family eats.
+                    </p>
+                    <br />
+                    <p>
+                        Garden Share has a mission to cut down wasted food,
+                        while improving quality, taste and nutrition. Reduce the
+                        carbon footprint of shipping and storing food from other
+                        countries. Support local economies.
                     </p>
                 </div>
             </div>

@@ -88,8 +88,7 @@ video {
 /* Site wide styling */
 
 html {
-    font-family: "Dancing Script", cursive;
-
+    font-family: "Oxygen", sans-serif;
     /* background-image: url("/images/farmers-market-bg.jpg");
     background-repeat: no-repeat;
     background-size: cover; */
@@ -388,6 +387,13 @@ body {
     justify-content: center;
 }
 
+/* My offers */
+.my-offers {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 /* Trading */
 .trading {
     display: flex;
@@ -411,12 +417,17 @@ body {
 }
 
 .product--listing {
-    width: 200px;
-    height: 150px;
+    width: 300px;
+    height: 250px;
     margin: 1%;
     box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.9);
+    overflow: scroll;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 /* Offer form */

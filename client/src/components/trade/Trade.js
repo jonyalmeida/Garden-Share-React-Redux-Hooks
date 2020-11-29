@@ -7,7 +7,7 @@ import Map from "./googleMaps/Map";
 import { fetchGoodsForTrade } from "../../store/thunks/goodsForTradeThunks";
 
 export default function Trade({ user }) {
-    const [view, setView] = useState("map");
+    const [view, setView] = useState("trade");
 
     const dispatch = useDispatch();
 
@@ -27,6 +27,7 @@ export default function Trade({ user }) {
             itemDescription: item.productDescription,
             itemName: item.productName,
             itemQty: item.productQty,
+            itemUrl: item.url,
             itemType: (() =>
                 item.vegetables ? "veg" : item.animal ? "animal" : "fruit")(),
         };
@@ -34,6 +35,7 @@ export default function Trade({ user }) {
 
     console.log(productsLocationList);
 
+    //displays offer listings on map
     const mapper = (
         <>
             <font id='listing' onClick={(e) => setView(e.target.id)}>
@@ -48,6 +50,9 @@ export default function Trade({ user }) {
         </>
     );
 
+    const trade = true;
+
+    //displays offer listings as list
     const lister = (
         <div className='trading'>
             <font id='map' onClick={(e) => setView(e.target.id)}>
@@ -58,7 +63,7 @@ export default function Trade({ user }) {
                 {allGoods
                     .filter((item) => item.vegetables)
                     .map((item, idx) => (
-                        <ProductListing key={idx} item={item} />
+                        <ProductListing trade={trade} key={idx} item={item} />
                     ))}
             </div>
             <h3>Animal</h3>
@@ -66,7 +71,7 @@ export default function Trade({ user }) {
                 {allGoods
                     .filter((item) => item.animal)
                     .map((item, idx) => (
-                        <ProductListing key={idx} item={item} />
+                        <ProductListing trade={trade} key={idx} item={item} />
                     ))}
             </div>
             <h3>Fruits</h3>
@@ -74,7 +79,7 @@ export default function Trade({ user }) {
                 {allGoods
                     .filter((item) => item.fruit)
                     .map((item, idx) => (
-                        <ProductListing key={idx} item={item} />
+                        <ProductListing trade={trade} key={idx} item={item} />
                     ))}
             </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchUserOffers } from "../../store/thunks/userGoodsThunks";
+import ProductListing from "../trade/ProductListing";
 
 export default function MyOffers({ user }) {
     const dispatch = useDispatch();
@@ -11,10 +12,13 @@ export default function MyOffers({ user }) {
     useEffect(() => {
         dispatch(fetchUserOffers(user.id));
     }, [dispatch, user.id]);
+
+    const trade = false;
+
     return (
-        <div>
+        <div className='my-offers'>
             {myOffers.map((item, idx) => (
-                <div key={idx}>{item.productName}</div>
+                <ProductListing trade={trade} key={idx} item={item} />
             ))}
         </div>
     );

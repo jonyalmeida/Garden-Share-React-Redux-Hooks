@@ -95,9 +95,12 @@ export default function Map({ productsLocationList = [], zoomLevel }) {
                                 setSelected({});
                             }}>
                             <>
+                                <img src={selected.itemUrl} />
                                 <h1>{selected.itemName}</h1>
                                 <h3>{selected.itemQty}</h3>
                                 <p>{selected.itemDescription}</p>
+                                <button>Trade</button>
+                                <button>Message</button>
                             </>
                         </InfoWindow>
                     ) : null}
