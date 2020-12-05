@@ -38,7 +38,6 @@ app.use(csurf({
 app.use(routes);
 
 // Serve React Application
-// This should come after routes, but before 404 and error handling.
 if (process.env.NODE_ENV === "production") {
   app.get('/', (req, res) => {
     res.cookie('XSRF-TOKEN', req.csrfToken(), { sameSite: true });
