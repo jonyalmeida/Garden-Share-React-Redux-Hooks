@@ -5,19 +5,14 @@ import {
     Marker,
     InfoWindow,
 } from "@react-google-maps/api";
-import usePlacesAutocomplete, {
-    getGeocode,
-    getLatLng,
-} from "use-places-autocomplete";
+import usePlacesAutocomplete from "use-places-autocomplete"; //     // getLatLng, //     // getGeocode,
 import {
     Combobox,
     ComboboxInput,
     ComboboxPopover,
-    ComboboxList,
     ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
-import { formatRelative } from "date-fns";
 
 import mapStyles from "./mapStyle";
 import { useSelector } from "react-redux";
@@ -94,7 +89,7 @@ export default function Map({ productsLocationList = [], zoomLevel }) {
                                 setSelected({});
                             }}>
                             <>
-                                <img src={selected.itemUrl} />
+                                <img alt='map' src={selected.itemUrl} />
                                 <h1>{selected.itemName}</h1>
                                 <h3>{selected.itemQty}</h3>
                                 <p>{selected.itemDescription}</p>
@@ -115,7 +110,7 @@ function Search() {
         value,
         suggestions: { status, data },
         setValue,
-        clearSuggestions,
+        // clearSuggestions,
     } = usePlacesAutocomplete({
         requestOptions: {
             location: { lat: () => 33.3870493, lng: () => -117.5236667 },

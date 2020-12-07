@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Trade from "./trade/Trade";
-import OfferForm from "./trade/OfferForm";
+import OfferForm from "../components/trade/offerForm/OfferForm";
 import Profile from "./profile/Profile";
 
 import trade from "../public/images/trade.png";

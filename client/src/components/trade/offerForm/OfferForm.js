@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { createOffer } from "../../store/thunks/userGoodsThunks";
-import UploadFile from "./UploadFile";
+import { createOffer } from "../../../store/thunks/userGoodsThunks";
+import { uploadImage, returnFileSize } from "./utils";
 
 export default function OfferForm({ user }) {
     const [name, setName] = useState("");
@@ -11,8 +11,36 @@ export default function OfferForm({ user }) {
     const [vegetables, setVegetables] = useState(true);
     const [animal, setAnimal] = useState(false);
     const [fruit, setFruit] = useState(false);
-
+    const [file, setFile] = useState(null);
+    const [photo, setPhoto] = useState(null);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log(file);
+
+        const fileTypes = ["image/jpeg", "image/png"];
+
+        function validFileType(file) {
+            return fileTypes.includes(file.type);
+        }
+
+        if (file) {
+            if (validFileType(file)) {
+                setPhoto(() => (
+                    <p>
+                        {returnFileSize(file.size)}
+                        <img
+                            alt='file'
+                            style={{ width: "100px" }}
+                            src={URL.createObjectURL(file)}
+                        />
+                    </p>
+                ));
+            } else {
+                setPhoto(() => <p>Invalid file type.</p>);
+            }
+        }
+    }, [file, setPhoto]);
 
     const onClickSelect = (e) => {
         if (e.target.id === "vegetables") {
@@ -36,6 +64,14 @@ export default function OfferForm({ user }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        let url = "";
+        if (file) {
+            //upload file to aws s3 bucket using user's id as bucket folder
+            uploadImage(file, user.id);
+
+            //generate URL
+            url = `https://garden-share.s3.us-east-2.amazonaws.com/${user.id}/${file.name}`;
+        }
 
         const product = {
             productName: name,
@@ -44,9 +80,14 @@ export default function OfferForm({ user }) {
             vegetables: vegetables,
             animal: animal,
             fruit: fruit,
+            url: url,
         };
 
         dispatch(createOffer(user.id, product));
+    };
+
+    const handleChange = (e) => {
+        setFile(e.target.files[0]);
     };
 
     return (
@@ -122,10 +163,22 @@ export default function OfferForm({ user }) {
                             <label htmlFor='fruit'>Fruits</label>
                         </div>
                     </div>
+                    <div>
+                        <label htmlFor='image_uploads'>
+                            Choose images to upload (PNG, JPG)
+                        </label>
+                        <input
+                            type='file'
+                            id='image_uploads'
+                            name='image_uploads'
+                            accept='.jpg, .jpeg, .png'
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div>{photo}</div>{" "}
                     <button onClick={handleSubmit}>Create offer</button>
                 </form>
             </div>
-            <UploadFile />
         </>
     );
 }

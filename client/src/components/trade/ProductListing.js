@@ -19,7 +19,7 @@ export default function ProductListing({ item, trade }) {
 
     return (
         <div className='product--listing'>
-            <img src={url} style={{ width: "75px" }} />
+            <img alt='alt' src={url} style={{ width: "75px" }} />
             <div>
                 <p>
                     <strong>Name: </strong> {name}
