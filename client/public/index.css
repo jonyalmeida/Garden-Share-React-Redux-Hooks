@@ -390,8 +390,11 @@ body {
 /* My offers */
 .my-offers {
     width: 80%;
+    height: 800px;
     display: flex;
     flex-wrap: wrap;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 /* Trading */
