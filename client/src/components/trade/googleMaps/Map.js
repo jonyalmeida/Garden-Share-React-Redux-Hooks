@@ -55,7 +55,6 @@ export default function Map({ productsLocationList = [], zoomLevel }) {
     if (loadError) return "Error loading maps.";
     if (!isLoaded) return "Loading maps..";
 
-    console.log(selected);
     return (
         <>
             <div>
@@ -125,10 +124,7 @@ function Search() {
     });
 
     return (
-        <Combobox
-            onSelect={(address) => {
-                console.log(address);
-            }}>
+        <Combobox onSelect={(address) => {}}>
             <ComboboxInput
                 value={value}
                 onChange={(e) => {

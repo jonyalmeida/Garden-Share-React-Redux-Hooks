@@ -12,4 +12,10 @@ module.exports = {
         expiresIn: process.env.JWT_EXPIRES_IN,
     },
     gkey: process.env.REACT_APP_GOOGLE_API_KEY,
+    aws: {
+        awsAccessKey: process.env.AWSACCESSKEYID,
+        awsSecretKey: process.env.AWSSECRETKEY,
+        awsBucket: process.env.AWSBUCKET,
+        awsRegion: process.env.AWSREGION,
+    },
 };

@@ -14,10 +14,8 @@ export default function Trade({ user }) {
     const allGoods = useSelector((state) => state.allGoods);
 
     useEffect(() => {
-        console.log("USERID", user.id);
         dispatch(fetchGoodsForTrade(user.id));
     }, [dispatch, user.id]);
-    console.log(allGoods);
 
     //build list with each product's geolocation
     const productsLocationList = allGoods.map((item) => {
@@ -32,8 +30,6 @@ export default function Trade({ user }) {
                 item.vegetables ? "veg" : item.animal ? "animal" : "fruit")(),
         };
     });
-
-    console.log(productsLocationList);
 
     //displays offer listings on map
     const mapper = (

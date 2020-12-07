@@ -11,8 +11,6 @@ export default function ProductListing({ item, trade }) {
     const description = item.productDescription;
     const url = item.url;
 
-    console.log(item);
-
     // console.log(name, qty, date, description, url);
 
     const tradeClick = (e) => {

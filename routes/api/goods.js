@@ -42,15 +42,12 @@ async function queryGoods(
 router.put(
     "/goods",
     asyncHandler(async function (req, res) {
-        console.log("GOODS PUT", req.body);
         const sellerId = req.body.userId;
         const myGoods = await Product.findAll({
             where: {
                 sellerId,
             },
         });
-
-        console.log(myGoods);
 
         res.json({ myGoods });
     })
@@ -60,7 +57,6 @@ router.put(
 router.put(
     "/all",
     asyncHandler(async function (req, res) {
-        console.log("ALL GOODS PUT", req.body);
         const userId = req.body.userId;
         const myGoods = await Product.findAll({
             where: {
@@ -72,8 +68,6 @@ router.put(
             },
             include: [{ model: User }],
         });
-
-        console.log(myGoods);
 
         res.json({ myGoods });
     })
@@ -111,12 +105,10 @@ router.post(
     "/create-offer",
     asyncHandler(async function (req, res) {
         const { product, userId } = req.body;
-        console.log(product, userId);
         const good = await Product.create({
             ...product,
             sellerId: userId,
         });
-        console.log(good);
         const myGoods = await Product.findAll({
             where: {
                 sellerId: userId,

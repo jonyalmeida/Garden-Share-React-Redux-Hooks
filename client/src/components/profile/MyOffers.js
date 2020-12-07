@@ -8,7 +8,6 @@ export default function MyOffers({ user }) {
     const dispatch = useDispatch();
 
     const myOffers = useSelector((state) => state.myGoods);
-    console.log(myOffers);
     useEffect(() => {
         dispatch(fetchUserOffers(user.id));
     }, [dispatch, user.id]);
